@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import { Amplify } from 'aws-amplify'
 import type { AppProps } from 'next/app'
-import { awsExports } from './../src/config/env'
+import { awsExports } from '../config/env'
 import { NextUIProvider, createTheme } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
