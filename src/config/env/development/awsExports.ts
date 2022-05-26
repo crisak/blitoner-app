@@ -5,4 +5,7 @@ export const awsExports = {
   aws_appsync_region: "us-east-1",
   aws_appsync_authenticationType: "AMAZON_COGNITO_USER_POOLS",
   aws_appsync_apiKey: "da2-iolspbnmyvg6pdzrb4334c3mzi",
+  aws_cognito_region: "us-east-1",
+  aws_user_pools_id: "us-east-1_nDLob0bid",
+  aws_user_pools_web_client_id: "6ilj5q1llkf3q6cekheej9bfu4",
 }
