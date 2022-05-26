@@ -3,21 +3,21 @@ import { Nullable } from "../../../common/types"
 
 const keyStorage = 'cognitoSession'
 
-const validateWindow = () => typeof window !== "undefined"
+const validateWindow = (win: Window) => typeof win !== "undefined"
 
-export const save = (data: AuthCognito) => {
-  if (!validateWindow()) return;
-  window.localStorage.setItem(keyStorage, JSON.stringify(data))
+export const save = (win: Window, data: AuthCognito) => {
+  if (!validateWindow(win)) return;
+  win.localStorage.setItem(keyStorage, JSON.stringify(data))
 }
 
-export const remove = () => {
-  if (!validateWindow()) return;
-  window.localStorage.removeItem(keyStorage)
+export const remove = (win: Window) => {
+  if (!validateWindow(win)) return;
+  win.localStorage.removeItem(keyStorage)
 }
 
-export const isAuthenticated = (): boolean => {
-  if (!validateWindow()) return false;
-  const data = window.localStorage.getItem(keyStorage)
+export const isAuthenticated = (win: Window): boolean => {
+  if (!validateWindow(win)) return false;
+  const data = win.localStorage.getItem(keyStorage)
   if (!data) {
     return false
   }
@@ -27,9 +27,9 @@ export const isAuthenticated = (): boolean => {
   return Boolean(dataUser)
 }
 
-export const get = (): Nullable<AuthCognito> => {
-  if (!validateWindow()) return null;
-  const data = localStorage.getItem(keyStorage)
+export const get = (win: Window): Nullable<AuthCognito> => {
+  if (!validateWindow(win)) return null;
+  const data = win.localStorage.getItem(keyStorage)
   if (!data) {
     return null
   }

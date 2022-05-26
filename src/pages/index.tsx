@@ -1,44 +1,9 @@
 import Head from 'next/head'
 import type { NextPage } from 'next'
-import { useState } from 'react'
 import styles from '../styles/Home.module.css'
-import { Auth } from 'aws-amplify'
-import { Button } from '@nextui-org/react'
-import { authService } from './../common/services'
-import { Nullable } from '../common/types'
 
 const Home: NextPage = () => {
-  const [response, setResponse] = useState<Nullable<authService.AuthCognito>>(authService.get())
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(authService.isAuthenticated())
 
-  const login = async () => {
-    try {
-      const username = 'cristian.agency'
-      const password = 'Temporal01'
-      const responseData = await Auth.signIn(username, password)
-      setResponse(responseData)
-      authService.save(responseData)
-
-    } catch (error) {
-      authService.remove()
-      console.log('error', error)
-      alert('Se presento un error' + error)
-    } finally {
-      setIsAuthenticated(authService.isAuthenticated())
-    }
-  }
-
-  const logout = async () => {
-    try {
-      await Auth.signOut()
-      authService.remove()
-      setIsAuthenticated(false)
-      setResponse(null)
-    } catch (error) {
-      console.log('error', error)
-      alert('Se presento un error' + error)
-    }
-  }
 
   return (
     <div className={styles.container}>
@@ -48,20 +13,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {!isAuthenticated && <Button onPress={login}>Login</Button>}
-        {isAuthenticated && <Button onPress={logout}>Logout</Button>}
-
-        <div className={styles.containerCode}>
-          {
-            response && (
-              <pre>
-                <code>
-                  {JSON.stringify(response, null, 2)}
-                </code>
-              </pre>
-            )
-          }
-        </div>
+        <h1>Welcome app</h1>
       </main>
 
     </div>

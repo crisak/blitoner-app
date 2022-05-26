@@ -1,0 +1,12 @@
+.container {
+  width: 90%;
+  padding-top: 2rem;
+  margin: auto;
+}
+
+.containerCode {
+  width: 50%;
+  padding-top: 2rem;
+  margin: auto;
+  border: 1px solid rgba(204, 204, 204, 0.279);
+}
