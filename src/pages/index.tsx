@@ -3,8 +3,6 @@ import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
-
-
   return (
     <div className={styles.container}>
       <Head>
@@ -15,7 +13,6 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1>Welcome app</h1>
       </main>
-
     </div>
   )
 }
