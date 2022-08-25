@@ -2,45 +2,43 @@ import { Button, Grid, Input, Row, Spacer, Text } from '@nextui-org/react'
 import { createProject, resetProject } from '@/redux/slices'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-
-const fetchData = (dispatch: any) => {
-  return new Promise<void>((resolve) => {
-    setTimeout(() => {
-      dispatch()
-      resolve()
-    }, 2000)
-  })
-}
+import { projectService } from './../../services'
+import { CreateProject } from '../../models'
 
 const FormProject: React.FC = () => {
   const dispatch = useDispatch()
 
   const onSave = async () => {
-    await fetchData(() =>
-      dispatch(
-        createProject({
-          id: Date.now() + '',
-          name: 'Cristian',
-          date: 'Camilo',
-          banner: 'https://google.com',
-          description: 'Lorem',
-          categoryID: 'Ropa',
-          location: {
-            position: { latitude: 124145, longitude: 23452345 },
-            address: 'Calle 34',
-            country: 'Cop',
-            state: 'Cundinamarca'
-          }
-        })
-      )
+    const dataForme = {
+      id: Date.now() + '',
+      name: 'Cristian',
+      date: 'Camilo',
+      banner: 'https://google.com',
+      description: 'Lorem',
+      categoryID: 'Ropa',
+      location: {
+        position: { latitude: 124145, longitude: 23452345 },
+        address: 'Calle 34',
+        country: 'Cop',
+        state: 'Cundinamarca'
+      }
+    } as CreateProject
+    const response = await projectService.create(dataForme)
+
+    const message = (
+      <>
+        Project created successfully <strong>{response.id}</strong>!
+      </>
     )
-    toast('Data created successfully!', {
+    toast(message, {
       type: 'success'
     })
+
+    dispatch(createProject(response))
   }
 
   const onReset = async () => {
-    await fetchData(() => dispatch(resetProject()))
+    await dispatch(resetProject())
     toast('Data created successfully!', {
       type: 'success'
     })

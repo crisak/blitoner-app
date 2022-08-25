@@ -6,7 +6,7 @@ export const Navbar = styled('ul', {
   margin: 0,
   padding: 0,
   overflow: 'hidden',
-  backgroundColor: '#333'
+  backgroundColor: 'rgb(51 51 51 / 45%)'
 })
 
 export const NavLink = styled('li', {

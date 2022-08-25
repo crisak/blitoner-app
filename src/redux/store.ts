@@ -1,9 +1,9 @@
-import { Project } from '@/models'
+import { Project } from '@/modules/project/models'
 import { configureStore } from '@reduxjs/toolkit'
-import { projectReducer } from './slices'
+import { projectReducer, ProjectStore } from './slices'
 
 export interface AppStore {
-  project: Project
+  project: ProjectStore
 }
 
 const store = configureStore<AppStore>({
