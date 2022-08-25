@@ -3,10 +3,25 @@ import type { NextPage } from 'next'
 import { Button, Card, Row, Spacer, Text } from '@nextui-org/react'
 import { BsPlus } from 'react-icons/bs'
 import Link from 'next/link'
-import store from '@/redux/store'
+import store, { AppStore } from '@/redux/store'
+import { useEffect } from 'react'
+import { projectService } from '@/modules/project/services'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadProjects } from '@/redux/slices'
+import { CardProject } from '@/modules/project/components'
 
 const Project: NextPage = () => {
-  const project = store.getState().project
+  const projects = useSelector((state: AppStore) => state.project.list)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    ;(async () => {
+      const response = await projectService.getAll()
+
+      dispatch(loadProjects(response))
+    })()
+  }, [])
+
   return (
     <>
       <Head>
@@ -26,9 +41,9 @@ const Project: NextPage = () => {
       </Row>
       <Spacer y={3} />
       <Card>
-        <pre>
-          <code>{JSON.stringify(project, null, 2)}</code>
-        </pre>
+        {projects.map((project) => (
+          <CardProject key={project.id} {...project} />
+        ))}
       </Card>
     </>
   )

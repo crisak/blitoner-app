@@ -26,6 +26,12 @@ const projectSlice = createSlice({
         active: newProject
       }
     },
+    loadProjects: (state, action) => {
+      return {
+        ...state,
+        list: action.payload
+      }
+    },
     updateProject: (state, action) => {
       return state
     },
@@ -35,7 +41,7 @@ const projectSlice = createSlice({
   }
 })
 
-export const { createProject, updateProject, resetProject } =
+export const { createProject, updateProject, resetProject, loadProjects } =
   projectSlice.actions
 
 export const projectReducer = projectSlice.reducer

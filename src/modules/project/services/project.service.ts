@@ -9,7 +9,7 @@ import {
 } from '../adapters'
 
 export const getAll = async (): Promise<Project[]> => {
-  const url = process.env.BLITONER_API
+  const url = process.env.NEXT_PUBLIC_BLITONER_API
   const { data } = await axios.get<GetProjectsDto>(`${url}/projects`)
 
   const dataAdapter = getProjectsAdapter(data)
@@ -27,7 +27,7 @@ export const getById = async (
     throw new Error('idProject not exits')
   }
 
-  const url = process.env.BLITONER_API
+  const url = process.env.NEXT_PUBLIC_BLITONER_API
   const { data } = await axios.get<GetProjectDto>(
     `${url}/projects/${idProject}`
   )
@@ -40,7 +40,7 @@ export const getById = async (
 export const create = async (project: CreateProject): Promise<Project> => {
   const payload = createProjectAdapter(project)
 
-  const url = process.env.BLITONER_API
+  const url = process.env.NEXT_PUBLIC_BLITONER_API
   const { data } = await axios.post<CreateProjectResultDto>(
     `${url}/projects`,
     payload
