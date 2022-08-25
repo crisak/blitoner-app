@@ -33,3 +33,5 @@ export const ProjectDefaultState: Project = {
     state: ''
   }
 }
+
+export type CreateProject = Omit<Project, 'id'>

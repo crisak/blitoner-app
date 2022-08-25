@@ -1,1 +1,1 @@
-export * from './get-projects.dto'
+export * from './project.dto'
