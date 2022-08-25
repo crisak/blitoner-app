@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import type { NextPage } from 'next'
-import { Button, Row, Text } from '@nextui-org/react'
+import { Button, Card, Row, Spacer, Text } from '@nextui-org/react'
 import { BsPlus } from 'react-icons/bs'
 import Link from 'next/link'
+import store from '@/redux/store'
 
 const Project: NextPage = () => {
+  const project = store.getState().project
   return (
     <>
       <Head>
@@ -22,6 +24,12 @@ const Project: NextPage = () => {
           <Button auto icon={<BsPlus size={40} />}></Button>
         </Link>
       </Row>
+      <Spacer y={3} />
+      <Card>
+        <pre>
+          <code>{JSON.stringify(project, null, 2)}</code>
+        </pre>
+      </Card>
     </>
   )
 }

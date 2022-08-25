@@ -1,4 +1,4 @@
-import { Project } from '@models'
+import { Project } from '@/models'
 import { configureStore } from '@reduxjs/toolkit'
 import { projectReducer } from './slices'
 

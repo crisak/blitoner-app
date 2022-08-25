@@ -8,26 +8,36 @@ import {
   Input,
   Spacer,
   useInput
-} from "@nextui-org/react"
-import { Auth } from "aws-amplify";
-import { NextPage } from "next"
-import { useState } from "react";
-import { useWindow } from "../../common/hooks";
-import { authService } from "../../common/services";
-import { Nullable } from "../../common/types";
+} from '@nextui-org/react'
+import { Auth } from 'aws-amplify'
+import { NextPage } from 'next'
+import { useState } from 'react'
+import { useWindow } from '../../hooks'
+import { authService } from '../../services'
+import { Nullable } from '../../common/types'
 
 const Login: NextPage = () => {
   const { isSSR, windowObj } = useWindow()
 
-  const { value: username, reset: resetUsername, bindings: bindingsUsername } = useInput("cristian.agency");
-  const { value: password, reset: resetPassword, bindings: bindingsPassword } = useInput("Temporal01");
+  const {
+    value: username,
+    reset: resetUsername,
+    bindings: bindingsUsername
+  } = useInput('cristian.agency')
+  const {
+    value: password,
+    reset: resetPassword,
+    bindings: bindingsPassword
+  } = useInput('Temporal01')
 
-  const [response, setResponse] = useState<Nullable<authService.AuthCognito>>(() => {
-    if (isSSR) {
-      return null
+  const [response, setResponse] = useState<Nullable<authService.AuthCognito>>(
+    () => {
+      if (isSSR) {
+        return null
+      }
+      return authService.get(windowObj as Window)
     }
-    return authService.get(windowObj as Window)
-  })
+  )
 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     if (isSSR) {
@@ -55,7 +65,6 @@ const Login: NextPage = () => {
       const responseData = await Auth.signIn(username, password)
       setResponse(responseData)
       authService.save(windowObj as Window, responseData)
-
     } catch (error) {
       authService.remove(windowObj as Window)
       console.log('error', error)
@@ -68,8 +77,10 @@ const Login: NextPage = () => {
   return (
     <Grid.Container gap={2} css={{ mt: '$20' }}>
       <Grid sm={12}>
-        <Card css={{ mw: "530px", mt: '$20', margin: 'auto', overflow: 'auto' }} bordered>
-
+        <Card
+          css={{ mw: '530px', mt: '$20', margin: 'auto', overflow: 'auto' }}
+          bordered
+        >
           <strong>Agency user</strong>
           <code>cristian.agency</code>
           <code>Temporal01</code>
@@ -80,18 +91,18 @@ const Login: NextPage = () => {
         </Card>
       </Grid>
       <Grid sm={12}>
-        <Card css={{ mw: "530px", margin: 'auto' }}>
+        <Card css={{ mw: '530px', margin: 'auto' }}>
           <Card.Header>
             <Text b>Login</Text>
           </Card.Header>
           <Divider />
-          <Card.Body css={{ py: "$10" }}>
+          <Card.Body css={{ py: '$10' }}>
             <Input
               {...bindingsUsername}
               bordered
               clearable
               onClearClick={resetUsername}
-              type='text'
+              type="text"
               label="Username"
               aria-label="Username"
               placeholder="Username"
@@ -101,7 +112,7 @@ const Login: NextPage = () => {
               {...bindingsPassword}
               clearable
               bordered
-              type='text'
+              type="text"
               onClearClick={resetPassword}
               placeholder="Password"
               label="Password"
@@ -111,24 +122,33 @@ const Login: NextPage = () => {
           <Divider />
           <Card.Footer>
             <Row justify="flex-end">
-              {!isAuthenticated && <Button size="sm" onPress={login}>Login</Button>}
-              {isAuthenticated && <Button size="sm" onPress={logout} color='warning'>Logout</Button>}
+              {!isAuthenticated && (
+                <Button size="sm" onPress={login}>
+                  Login
+                </Button>
+              )}
+              {isAuthenticated && (
+                <Button size="sm" onPress={logout} color="warning">
+                  Logout
+                </Button>
+              )}
             </Row>
           </Card.Footer>
         </Card>
       </Grid>
-      {
-        response && (
-          <Grid sm={12}>
-            <Card css={{ mw: "800px", mt: '$20', margin: 'auto', overflow: 'auto' }} bordered>
-
-              <pre><code>{JSON.stringify(response, null, 2)}</code></pre>
-
-            </Card>
-          </Grid>
-        )
-      }
+      {response && (
+        <Grid sm={12}>
+          <Card
+            css={{ mw: '800px', mt: '$20', margin: 'auto', overflow: 'auto' }}
+            bordered
+          >
+            <pre>
+              <code>{JSON.stringify(response, null, 2)}</code>
+            </pre>
+          </Card>
+        </Grid>
+      )}
     </Grid.Container>
-  );
+  )
 }
 export default Login

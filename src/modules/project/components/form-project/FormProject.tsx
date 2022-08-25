@@ -1,7 +1,7 @@
 import { Button, Grid, Input, Row, Spacer, Text } from '@nextui-org/react'
-import { createProject } from '@redux/slices'
+import { createProject, resetProject } from '@/redux/slices'
 import { useDispatch } from 'react-redux'
-// import { toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const fetchData = (dispatch: any) => {
   return new Promise<void>((resolve) => {
@@ -19,22 +19,31 @@ const FormProject: React.FC = () => {
     await fetchData(() =>
       dispatch(
         createProject({
-          id: '',
-          name: '',
-          date: '',
-          banner: '',
-          description: '',
-          categoryID: '',
+          id: Date.now() + '',
+          name: 'Cristian',
+          date: 'Camilo',
+          banner: 'https://google.com',
+          description: 'Lorem',
+          categoryID: 'Ropa',
           location: {
-            position: { latitude: 0, longitude: 0 },
-            address: '',
-            country: '',
-            state: ''
+            position: { latitude: 124145, longitude: 23452345 },
+            address: 'Calle 34',
+            country: 'Cop',
+            state: 'Cundinamarca'
           }
         })
       )
     )
-    // toast('Data created successfully!')
+    toast('Data created successfully!', {
+      type: 'success'
+    })
+  }
+
+  const onReset = async () => {
+    await fetchData(() => dispatch(resetProject()))
+    toast('Data created successfully!', {
+      type: 'success'
+    })
   }
 
   return (
@@ -132,7 +141,7 @@ const FormProject: React.FC = () => {
       <Grid.Container gap={4}>
         <Grid xs={12}>
           <Row justify="flex-end">
-            <Button size="sm" light>
+            <Button size="sm" light onPress={onReset}>
               Cancel
             </Button>
             <Button size="sm" onPress={onSave}>

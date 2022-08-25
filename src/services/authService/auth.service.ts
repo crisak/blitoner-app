@@ -1,5 +1,5 @@
 import { AuthCognito } from "./auth.interface"
-import { Nullable } from "../../../common/types"
+import { Nullable } from "../../common/types"
 
 const keyStorage = 'cognitoSession'
 

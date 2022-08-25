@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import type { NextPage } from 'next'
-import { Card, Container, Divider, Grid, Text } from '@nextui-org/react'
-import { FormProject } from '@modules/project/components'
+import { Card, Divider, Grid, Text } from '@nextui-org/react'
+import { FormProject } from '@/modules/project/components'
 
 const Project: NextPage = () => {
   return (
