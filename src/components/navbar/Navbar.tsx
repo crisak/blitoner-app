@@ -15,11 +15,9 @@ const Navbar = () => {
         <NavLink>
           <Link href="/projects">Projects</Link>
         </NavLink>
-        {project.name && (
-          <NavLink css={{ float: 'right' }}>
-            <Link href="/projects">{project.name}</Link>
-          </NavLink>
-        )}
+        <NavLink>
+          <Link href="/contact">Contact</Link>
+        </NavLink>
       </Container>
     </NavbarStyled>
   )
