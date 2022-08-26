@@ -2,7 +2,14 @@ import { Project } from '../models'
 
 type Model = Pick<
   Project,
-  'banner' | 'categoryID' | 'date' | 'description' | 'id' | 'location' | 'name'
+  | 'banner'
+  | 'categoryID'
+  | 'date'
+  | 'description'
+  | 'id'
+  | 'location'
+  | 'name'
+  | 'userID'
 >
 
 export type GetProjectsDto = Model[]

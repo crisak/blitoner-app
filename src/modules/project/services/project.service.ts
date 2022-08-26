@@ -8,7 +8,18 @@ import {
   createResultProjectAdapter
 } from '../adapters'
 
+// TODO - Remove setTimeout
 export const getAll = async (): Promise<Project[]> => {
+  return new Promise((resolve) => {
+    setTimeout(async () => {
+      const url = process.env.NEXT_PUBLIC_BLITONER_API
+      const { data } = await axios.get<GetProjectsDto>(`${url}/projects`)
+
+      const dataAdapter = getProjectsAdapter(data)
+
+      resolve(dataAdapter)
+    }, 6000)
+  })
   const url = process.env.NEXT_PUBLIC_BLITONER_API
   const { data } = await axios.get<GetProjectsDto>(`${url}/projects`)
 

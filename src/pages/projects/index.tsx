@@ -1,26 +1,60 @@
 import Head from 'next/head'
-import type { NextPage } from 'next'
-import { Button, Card, Row, Spacer, Text } from '@nextui-org/react'
-import { BsPlus } from 'react-icons/bs'
+import type { NextPage, InferGetServerSidePropsType } from 'next'
+import {
+  Button,
+  Card,
+  Col,
+  Grid,
+  Loading,
+  Row,
+  Spacer,
+  Text
+} from '@nextui-org/react'
+import { BsPlus, BsArrowClockwise } from 'react-icons/bs'
 import Link from 'next/link'
-import store, { AppStore } from '@/redux/store'
-import { useEffect } from 'react'
+import { AppStore } from '@/redux/store'
+import { useEffect, useState } from 'react'
 import { projectService } from '@/modules/project/services'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadProjects } from '@/redux/slices'
 import { CardProject } from '@/modules/project/components'
+import { Project } from '@/modules/project/models'
+import { useRouter } from 'next/router'
 
-const Project: NextPage = () => {
+/**
+ * @doc
+ * SSR: Server side rendering
+ * https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
+ * Run server-inside
+ * Sometime run client-inside
+ */
+export const getServerSideProps = async () => {
+  const projects: Project[] = await projectService.getAll()
+
+  return {
+    props: { projects }
+  }
+}
+
+type ProjectProps = InferGetServerSidePropsType<typeof getServerSideProps>
+
+const Project: NextPage<ProjectProps> = (props) => {
+  console.log('UPDATE PROS', props)
   const projects = useSelector((state: AppStore) => state.project.list)
   const dispatch = useDispatch()
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
+
+  const refreshData = () => {
+    router.replace(router.asPath)
+    setLoading(true)
+  }
 
   useEffect(() => {
-    ;(async () => {
-      const response = await projectService.getAll()
-
-      dispatch(loadProjects(response))
-    })()
-  }, [])
+    dispatch(loadProjects(props.projects))
+    setLoading(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props])
 
   return (
     <>
@@ -31,20 +65,42 @@ const Project: NextPage = () => {
       </Head>
 
       <Row justify="space-between">
-        <Text h2 weight="bold">
-          Projects 1
-        </Text>
+        <Col span={10}>
+          <Text h2 weight="bold">
+            Projects 1
+          </Text>
+        </Col>
 
-        <Link href="/projects/create">
-          <Button auto icon={<BsPlus size={40} />}></Button>
-        </Link>
+        <Col span={2}>
+          <Row justify="flex-end">
+            {loading ? (
+              <Button disabled auto light css={{ mr: '$8' }}>
+                <Loading type="points-opacity" color="currentColor" size="sm" />
+              </Button>
+            ) : (
+              <Button
+                light
+                onPress={refreshData}
+                auto
+                css={{ mr: '$8' }}
+                icon={<BsArrowClockwise size={25} />}
+              ></Button>
+            )}
+
+            <Link href="/projects/create">
+              <Button auto icon={<BsPlus size={40} />}></Button>
+            </Link>
+          </Row>
+        </Col>
       </Row>
       <Spacer y={3} />
-      <Card>
+      <Grid.Container gap={3} justify="center">
         {projects.map((project) => (
-          <CardProject key={project.id} {...project} />
+          <Grid key={project.id} xs={4}>
+            <CardProject {...project} />
+          </Grid>
         ))}
-      </Card>
+      </Grid.Container>
     </>
   )
 }

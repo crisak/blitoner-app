@@ -1,5 +1,6 @@
 export interface Project {
   id: string
+  userID: string
   name: string
   /**
    * ISO 8601
@@ -26,6 +27,7 @@ export const ProjectDefaultState: Project = {
   banner: '',
   description: '',
   categoryID: '',
+  userID: '',
   location: {
     position: { latitude: 0, longitude: 0 },
     address: '',
