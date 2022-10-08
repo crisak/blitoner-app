@@ -4,6 +4,9 @@ import { Container } from '@nextui-org/react'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
+/**
+ * @todo Aligns items vertical (ul > li) into navbar
+ */
 const Navbar = () => {
   const project = useSelector((state: AppStore) => state.project)
   return (

@@ -1,3 +1,7 @@
+@font-face {
+  font-family: spray;
+  src: url(../assets/fonts/Spray\ Letters.otf);
+}
 html,
 body {
   padding: 0;
