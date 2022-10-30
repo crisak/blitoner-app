@@ -39,7 +39,6 @@ export const getServerSideProps = async () => {
 type ProjectProps = InferGetServerSidePropsType<typeof getServerSideProps>
 
 const Project: NextPage<ProjectProps> = (props) => {
-  console.log('UPDATE PROS', props)
   const projects = useSelector((state: AppStore) => state.project.list)
   const dispatch = useDispatch()
   const router = useRouter()

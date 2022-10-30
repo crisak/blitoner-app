@@ -2,12 +2,17 @@
   font-family: spray;
   src: url(../assets/fonts/Spray\ Letters.otf);
 }
+@font-face {
+  font-family: network;
+  src: url(../assets/fonts/Network.ttf);
+}
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: black;
 }
 
 a {

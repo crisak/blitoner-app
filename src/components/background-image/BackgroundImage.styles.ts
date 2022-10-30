@@ -1,14 +1,12 @@
 import { styled } from '@nextui-org/react'
+import Image from 'next/image'
 
 export const Container = styled('div', {
   position: 'relative'
 })
 
-export const Background = styled('div', {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  zIndex: 0
+export const BackgroundImageStyle = styled(Image, {
+  color: 'red'
 })
 
 export const Content = styled('div', {

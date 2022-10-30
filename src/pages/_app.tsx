@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import 'react-toastify/dist/ReactToastify.min.css'
 import type { AppProps } from 'next/app'
-import { NextUIProvider, createTheme, Container } from '@nextui-org/react'
+import { NextUIProvider, createTheme } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { Provider } from 'react-redux'
 import store from '@/redux/store'
@@ -29,11 +29,9 @@ function App({ Component, pageProps }: AppProps) {
       >
         <NextUIProvider>
           <Navbar />
-          <Container css={{ py: '$20' }}>
-            <main>
-              <Component {...pageProps} />
-            </main>
-          </Container>
+          <main>
+            <Component {...pageProps} />
+          </main>
           <ToastContainer
             position="bottom-right"
             autoClose={5000}

@@ -1,6 +1,9 @@
 import { Card, Col, Row, Button, Text } from '@nextui-org/react'
 import { Project } from '../../models'
 
+/**
+ * @todo remove React.FC this is deprecated
+ */
 const CardProject: React.FC<Project> = ({ name, categoryID, location }) => {
   return (
     <Card css={{ w: '100%', h: '400px' }}>

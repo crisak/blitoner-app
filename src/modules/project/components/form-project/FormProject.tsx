@@ -5,6 +5,9 @@ import { toast } from 'react-toastify'
 import { projectService } from './../../services'
 import { CreateProject } from '../../models'
 
+/**
+ * @todo remove React.FC this is deprecated
+ */
 const FormProject: React.FC = () => {
   const dispatch = useDispatch()
 
