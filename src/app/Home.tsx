@@ -1,75 +1,20 @@
 'use client'
 
-import { BsYoutube, BsFacebook, BsInstagram } from 'react-icons/bs'
 import { Text } from '@/components'
 import BlitoFrontPage from '@/assets/images/home-blito_bg_white.png'
-import SplashImage1 from '@/assets/images/splash1.png'
-import SplashImage2 from '@/assets/images/splash2.png'
-import SplashImage3 from '@/assets/images/splash3.png'
+
 import { CategoriesSummaryContents } from '@/modules/categories/models'
 import {
-  ContainerSocialsHome,
   ContentProjects,
   Header,
   CategoryContent,
-  LinkSocial,
   SectionCategory
 } from './Home.styles'
-import { SplashSocial, CardLinkImage } from './components'
+import { CardLinkImage, FloatingSocials } from './components'
 import { Button, Container } from '@nextui-org/react'
 import Image from 'next/image'
-import { useScroll } from '@/hooks'
 
 const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
-  const scroll = useScroll()
-
-  const displayRedSocials = () => {
-    const opacity = (1 * scroll.hideHomePage) / scroll.heightWindow
-
-    return (
-      <ContainerSocialsHome
-        css={{
-          opacity: opacity <= 0 ? '0' : opacity,
-          display: opacity <= 0 ? 'none' : 'block'
-        }}
-      >
-        <SplashSocial
-          icon={
-            <LinkSocial
-              href="https://www.instagram.com/blito.col/?theme=dark"
-              target="_blank"
-            >
-              <BsInstagram />
-            </LinkSocial>
-          }
-          bgImg={SplashImage1.src}
-        />
-        <SplashSocial
-          icon={
-            <LinkSocial
-              href="https://www.facebook.com/pabloalexanderguerrero"
-              target="_blank"
-            >
-              <BsFacebook />
-            </LinkSocial>
-          }
-          bgImg={SplashImage2.src}
-        />
-        <SplashSocial
-          icon={
-            <LinkSocial
-              href="https://www.youtube.com/channel/UCesHX161bu3qh0qJut11vzQ"
-              target="_blank"
-            >
-              <BsYoutube />
-            </LinkSocial>
-          }
-          bgImg={SplashImage3.src}
-        />
-      </ContainerSocialsHome>
-    )
-  }
-
   return (
     <>
       <Header>
@@ -88,7 +33,7 @@ const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
         </Text>
       </Header>
 
-      {displayRedSocials()}
+      <FloatingSocials />
 
       {categories.slice(0, 5).map((category, index) => {
         const odd = Boolean(index % 2)
