@@ -11,7 +11,6 @@ const getSummaryContents = async () => {
 
 const HomePage = async () => {
   const categories = await getSummaryContents()
-
   return <Home categories={categories} />
 }
 

@@ -1,4 +1,4 @@
-import { SplashStyle } from '../Hole.styles'
+import { SplashStyle } from '../Home.styles'
 import type { ReactNode } from 'react'
 
 type SplashSocialIcon = { icon: ReactNode; bgImg: string }

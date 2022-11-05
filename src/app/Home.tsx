@@ -1,7 +1,5 @@
 'use client'
 
-import { use } from 'react'
-import Image from 'next/image'
 // import { Button, Container } from '@nextui-org/react'
 import { BsYoutube, BsFacebook, BsInstagram } from 'react-icons/bs'
 import { Text } from '@/components'
@@ -17,12 +15,13 @@ import {
   ContainerSocialsHome,
   ContentProjects,
   Header,
-  LeftContent,
+  CategoryContent,
   LinkSocial,
   SectionCategory
-} from './Hole.styles'
-import { SplashSocial, CardImage } from './components'
+} from './Home.styles'
+import { SplashSocial, CardLinkImage } from './components'
 import { Button, Container } from '@nextui-org/react'
+import Image from 'next/image'
 
 const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
   console.log('categories->', categories.length)
@@ -80,50 +79,25 @@ const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
         </ContainerSocialsHome>
       </Header>
 
-      {/* <SectionCategory>
-        <LeftContent>
-          <Text h3>{category.name}</Text>
-          <Text css={{ mb: '$10' }}>{category.description}</Text>
-          <Button>Mirar más</Button>
-        </LeftContent>
-        <ContentProjects>
-          {category.projects.map((project, index) => (
-            <CardImage key={project.id} {...project} index={index} />
-          ))}
-        </ContentProjects>
-      </SectionCategory> */}
-
-      {categories.slice(0).map((category, index) => {
+      {categories.slice(0, 5).map((category, index) => {
+        const odd = Boolean(index % 2)
         return (
           <Container key={index}>
-            <SectionCategory>
-              {index % 2 === 0 ? (
-                <>
-                  <LeftContent>
-                    <Text h3>{category.name}</Text>
-                    <Text css={{ mb: '$10' }}>{category.description}</Text>
-                    <Button>Mirar más</Button>
-                  </LeftContent>
-                  <ContentProjects>
-                    {category.projects.map((project, index) => (
-                      <CardImage key={project.id} {...project} index={index} />
-                    ))}
-                  </ContentProjects>
-                </>
-              ) : (
-                <>
-                  <ContentProjects>
-                    {category.projects.map((project, index) => (
-                      <CardImage key={project.id} {...project} index={index} />
-                    ))}
-                  </ContentProjects>
-                  <LeftContent>
-                    <Text h3>{category.name}</Text>
-                    <Text css={{ mb: '$10' }}>{category.description}</Text>
-                    <Button>Mirar más</Button>
-                  </LeftContent>
-                </>
-              )}
+            <SectionCategory className={odd ? `reverse-section` : ''}>
+              <CategoryContent>
+                <Text h2>{category.name}</Text>
+                <Text css={{ mb: '$10' }}>{category.description}</Text>
+                <Button>Ver más</Button>
+              </CategoryContent>
+              <ContentProjects>
+                {category.projects.slice(0, 5).map((project, index) => (
+                  <CardLinkImage
+                    key={project.id}
+                    className={`card-image__card-${index + 1}`}
+                    {...project}
+                  />
+                ))}
+              </ContentProjects>
             </SectionCategory>
           </Container>
         )

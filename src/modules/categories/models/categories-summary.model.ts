@@ -1,7 +1,7 @@
 export type CategoriesSummaryContents = Category[]
 
-interface Category {
-  id: string
+export interface Category {
+  id: string /* Id of category */
   name: string
   description: string
   projects: Array<{

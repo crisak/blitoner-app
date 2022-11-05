@@ -1,3 +1,5 @@
 export * from './background-image'
+export { default as Box, type BoxProps } from './box/Box'
+export { default as LoadingProgress } from './loading-progress/LoadingProgress'
 export { default as Navbar } from './navbar/Navbar'
 export * from './text'

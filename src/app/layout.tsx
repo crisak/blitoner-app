@@ -7,6 +7,8 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { createTheme, NextUIProvider } from '@nextui-org/react'
 import { ToastContainer } from 'react-toastify'
 import { Navbar } from '@/components'
+import { Suspense } from 'react'
+import { CssBaseline } from '@nextui-org/react'
 
 const lightTheme = createTheme({
   type: 'light'

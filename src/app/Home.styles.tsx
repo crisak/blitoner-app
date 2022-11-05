@@ -18,11 +18,15 @@ export const Header = styled('header', {
 export const SectionCategory = styled('section', {
   display: 'flex',
   flexWrap: 'wrap',
-  height: '100%',
+  height: 'auto',
+  minHeight: '100vh',
   width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '2rem'
+  gap: '6rem',
+  '&.reverse-section': {
+    flexDirection: 'row-reverse'
+  }
 })
 
 /**
@@ -64,19 +68,50 @@ export const ContainerSocialsHome = styled('div', {
 /**
  * Sections by category
  */
-export const LeftContent = styled('div', {
+export const CategoryContent = styled('div', {
   width: '100%',
-  maxWidth: '300px',
-  textAlign: 'center',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center'
+  maxWidth: '300px'
 })
+
+const positionsBox = [
+  {
+    top: '30%',
+    left: '0'
+  },
+  {
+    bottom: '0',
+    left: '15%'
+  },
+  {
+    top: '0',
+    left: '30%'
+  },
+  {
+    top: '40%',
+    left: '40%',
+    zIndex: 1
+  },
+  {
+    top: '20%',
+    right: '0'
+  }
+]
+
+const stylesBoxChildren = positionsBox.reduce((prev, properties, index) => {
+  const className = `& .card-image__card-${index + 1}`
+  prev[className] = properties
+  return prev
+}, {} as Record<string, unknown>)
 
 export const ContentProjects = styled('div', {
   position: 'relative',
-  flex: 1,
-  display: 'grid',
-  gridTemplateColumns: 'auto auto',
-  gridGap: '2rem'
+  width: '600px',
+  height: '800px',
+
+  '& .card-image__card-1, & .card-image__card-2, & .card-image__card-3, & .card-image__card-4, & .card-image__card-5':
+    {
+      position: 'absolute'
+    },
+
+  ...stylesBoxChildren
 })

@@ -1,43 +1,58 @@
-import { Text } from '@/components'
-import { CategoriesSummaryContents } from '@/modules/categories/models'
-import { Card, Col, CSS } from '@nextui-org/react'
+'use client'
 
-export const CardImage = ({
+import { Box, BoxProps, Text } from '@/components'
+import { Category } from '@/modules/categories/models'
+import { BORDER_RADIUS } from '@/styles/variables'
+import Image from 'next/image'
+import styles from './CardImage.module.css'
+import classnames from 'classnames'
+import Tilt from 'react-parallax-tilt'
+import Link from 'next/link'
+
+const getDateFormat = (dateISOString: string) => {
+  const instanceDate = new Date(dateISOString)
+
+  return new Intl.DateTimeFormat('es-CO').format(instanceDate)
+}
+
+const MEASURE = '280'
+
+type CardImageProps = BoxProps & Category['projects'][0]
+
+export const CardLinkImage = ({
   image,
   date,
   name,
-  index
-}: CategoriesSummaryContents[0]['projects'][0] & { index: number }) => {
-  let css: CSS = {}
-  if (index + 1 === 5) {
-    css.position = 'absolute'
-    css.top = '50%'
-    css.left = '50%'
-    css.transform = 'translateX(-50%) translateY(-50%)'
-    css.width = '100%'
-    css.maxWidth = '300px'
-    css.height = '200px'
-  }
+  id: projectId,
+  className
+}: CardImageProps) => {
+  const classes = classnames(
+    {
+      [styles.parallax_effect_glare_scale]: true
+    },
+    className
+  )
 
   return (
-    <Card css={css}>
-      <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
-        <Col>
-          <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
-            {date}
-          </Text>
-          <Text h4 color="white">
-            {name}
-          </Text>
-        </Col>
-      </Card.Header>
-      <Card.Image
-        src={image}
-        objectFit="cover"
-        width="100%"
-        height={200}
-        alt={`Imagen de project de ${name}`}
-      />
-    </Card>
+    <>
+      <Link href={`/projects/${projectId}`}>
+        <Tilt className={classes} perspective={500} scale={1.02}>
+          <Image
+            src={image}
+            alt={`Phot of ${name}`}
+            width={MEASURE}
+            height={MEASURE}
+            blurDataURL="data:..."
+            style={{
+              borderRadius: BORDER_RADIUS
+            }}
+          />
+          <div className={styles.parallax_effect_glare_scale__inner_element}>
+            <Text h3>{name}</Text>
+            <Text as="span">{getDateFormat(date)}</Text>
+          </div>
+        </Tilt>
+      </Link>
+    </>
   )
 }
