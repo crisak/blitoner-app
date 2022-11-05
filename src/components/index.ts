@@ -1,5 +1,5 @@
-export * from './background-image'
-export { default as Box, type BoxProps } from './box/Box'
+export { default as Box } from './box/Box'
+export * from './layout/footer'
+export * from './layout'
 export { default as LoadingProgress } from './loading-progress/LoadingProgress'
-export { default as Navbar } from './navbar/Navbar'
 export * from './text'

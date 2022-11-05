@@ -6,7 +6,7 @@ import store from '@/redux/store'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { createTheme, NextUIProvider } from '@nextui-org/react'
 import { ToastContainer } from 'react-toastify'
-import { Navbar } from '@/components'
+import { Navbar, Footer } from '@/components'
 import { Suspense } from 'react'
 import { CssBaseline } from '@nextui-org/react'
 
@@ -28,7 +28,7 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
       <head>
         <title>Blitoner - Blog</title>
       </head>
-      <body style={{ width: '100%' }}>
+      <body>
         <Provider store={store}>
           <NextThemesProvider
             defaultTheme="system"
@@ -41,13 +41,14 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
             <NextUIProvider>
               <Navbar />
               <main>{children}</main>
-              {/* <ToastContainer
+              <Footer />
+              <ToastContainer
                 position="bottom-right"
                 autoClose={5000}
                 hideProgressBar={true}
                 closeOnClick
                 pauseOnHover
-              /> */}
+              />
             </NextUIProvider>
           </NextThemesProvider>
         </Provider>

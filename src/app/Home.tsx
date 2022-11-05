@@ -1,15 +1,11 @@
 'use client'
 
-// import { Button, Container } from '@nextui-org/react'
 import { BsYoutube, BsFacebook, BsInstagram } from 'react-icons/bs'
 import { Text } from '@/components'
-// import BgImage from '@/assets/images/bg-haeder_home.png'
 import BlitoFrontPage from '@/assets/images/home-blito_bg_white.png'
 import SplashImage1 from '@/assets/images/splash1.png'
 import SplashImage2 from '@/assets/images/splash2.png'
 import SplashImage3 from '@/assets/images/splash3.png'
-// import BgImageCategory from '@/assets/images/bg-home-category.png'
-// import { categoryService } from '@/modules/categories/services'
 import { CategoriesSummaryContents } from '@/modules/categories/models'
 import {
   ContainerSocialsHome,
@@ -22,9 +18,57 @@ import {
 import { SplashSocial, CardLinkImage } from './components'
 import { Button, Container } from '@nextui-org/react'
 import Image from 'next/image'
+import { useScroll } from '@/hooks'
 
 const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
-  console.log('categories->', categories.length)
+  const scroll = useScroll()
+
+  const displayRedSocials = () => {
+    const opacity = (1 * scroll.hideHomePage) / scroll.heightWindow
+
+    return (
+      <ContainerSocialsHome
+        css={{
+          opacity: opacity <= 0 ? '0' : opacity,
+          display: opacity <= 0 ? 'none' : 'block'
+        }}
+      >
+        <SplashSocial
+          icon={
+            <LinkSocial
+              href="https://www.instagram.com/blito.col/?theme=dark"
+              target="_blank"
+            >
+              <BsInstagram />
+            </LinkSocial>
+          }
+          bgImg={SplashImage1.src}
+        />
+        <SplashSocial
+          icon={
+            <LinkSocial
+              href="https://www.facebook.com/pabloalexanderguerrero"
+              target="_blank"
+            >
+              <BsFacebook />
+            </LinkSocial>
+          }
+          bgImg={SplashImage2.src}
+        />
+        <SplashSocial
+          icon={
+            <LinkSocial
+              href="https://www.youtube.com/channel/UCesHX161bu3qh0qJut11vzQ"
+              target="_blank"
+            >
+              <BsYoutube />
+            </LinkSocial>
+          }
+          bgImg={SplashImage3.src}
+        />
+      </ContainerSocialsHome>
+    )
+  }
 
   return (
     <>
@@ -42,42 +86,9 @@ const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
         <Text h2 css={{ textAlign: 'center' }}>
           Deja volar tu imaginación
         </Text>
-        <ContainerSocialsHome>
-          <SplashSocial
-            icon={
-              <LinkSocial
-                href="https://www.instagram.com/blito.col/?theme=dark"
-                target="_blank"
-              >
-                <BsInstagram />
-              </LinkSocial>
-            }
-            bgImg={SplashImage1.src}
-          />
-          <SplashSocial
-            icon={
-              <LinkSocial
-                href="https://www.facebook.com/pabloalexanderguerrero"
-                target="_blank"
-              >
-                <BsFacebook />
-              </LinkSocial>
-            }
-            bgImg={SplashImage2.src}
-          />
-          <SplashSocial
-            icon={
-              <LinkSocial
-                href="https://www.youtube.com/channel/UCesHX161bu3qh0qJut11vzQ"
-                target="_blank"
-              >
-                <BsYoutube />
-              </LinkSocial>
-            }
-            bgImg={SplashImage3.src}
-          />
-        </ContainerSocialsHome>
       </Header>
+
+      {displayRedSocials()}
 
       {categories.slice(0, 5).map((category, index) => {
         const odd = Boolean(index % 2)

@@ -3,6 +3,7 @@ import { Navbar, Text, useTheme } from '@nextui-org/react'
 import Link from 'next/link'
 import BlitoFrontPage from '@/assets/images/home-blito_bg_white.png'
 import Image from 'next/image'
+// import { Link } from '@nextui-org/react'
 
 const collapseItems = [
   {
@@ -46,16 +47,14 @@ const NavbarComponent = () => {
         <Link href="/contact">Contact</Link>
       </Navbar.Content>
       <Navbar.Content>
-        <Navbar.Link color="inherit" href="/login">
+        <Link color="inherit" href="/login">
           Login
-        </Navbar.Link>
+        </Link>
       </Navbar.Content>
       <Navbar.Collapse>
         {collapseItems.map(({ label, route }) => (
           <Navbar.CollapseItem key={label}>
-            <Link color="inherit" href={route}>
-              {label}
-            </Link>
+            <Link href={route}>{label}</Link>
           </Navbar.CollapseItem>
         ))}
       </Navbar.Collapse>

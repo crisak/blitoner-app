@@ -34,7 +34,7 @@ export const SectionCategory = styled('section', {
  */
 
 export const LinkSocial = styled('a', {
-  color: '$primaryLight',
+  color: '$white',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -54,7 +54,6 @@ export const SplashStyle = styled('div', {
   marginBottom: '-2rem',
   opacity: 0.7,
   '& > svg': {
-    color: '$primaryLight',
     fontSize: '$md'
   }
 })
