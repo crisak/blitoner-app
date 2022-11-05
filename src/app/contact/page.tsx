@@ -1,4 +1,6 @@
-import { Text } from '../components'
+'use client'
+
+import { Text } from '@/components'
 
 const ContactPage = () => {
   return <Text>Contact</Text>

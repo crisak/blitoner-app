@@ -1,29 +1,66 @@
-// import { AppStore } from '@/redux/store'
-import { Navbar as NavbarStyled, NavLink } from '@/styled-components'
-import { Container } from '@nextui-org/react'
+// import { Navbar as NavbarStyled, NavLink } from '@/styled-components'
+import { Navbar, Text, useTheme } from '@nextui-org/react'
 import Link from 'next/link'
-// import { useSelector } from 'react-redux'
+import BlitoFrontPage from '@/assets/images/home-blito_bg_white.png'
+import Image from 'next/image'
 
-/**
- * @todo Aligns items vertical (ul > li) into navbar
- */
-const Navbar = () => {
-  // const project = useSelector((state: AppStore) => state.project)
+const collapseItems = [
+  {
+    label: 'Home',
+    route: '/'
+  },
+  {
+    label: 'Projects',
+    route: '/projects'
+  },
+  {
+    label: 'Contact',
+    route: '/contact'
+  },
+  {
+    label: 'Login',
+    route: '/login'
+  }
+]
+
+const NavbarComponent = () => {
+  const { isDark } = useTheme()
   return (
-    <NavbarStyled role="navigation">
-      <Container>
-        <NavLink>
-          <Link href="/">Home</Link>
-        </NavLink>
-        <NavLink>
-          <Link href="/projects">Projects</Link>
-        </NavLink>
-        <NavLink>
-          <Link href="/contact">Contact</Link>
-        </NavLink>
-      </Container>
-    </NavbarStyled>
+    <Navbar isBordered={isDark} variant="sticky">
+      <Navbar.Brand>
+        <Navbar.Toggle css={{ mr: '$8' }} aria-label="toggle navigation" />
+        <Image
+          src={BlitoFrontPage}
+          width={40}
+          height={40}
+          alt="Logo de portada"
+          color="red"
+        />
+        <Text b color="inherit" hideIn="xs" css={{ ml: '$8' }}>
+          Blito
+        </Text>
+      </Navbar.Brand>
+      <Navbar.Content enableCursorHighlight hideIn="xs" variant="underline">
+        <Link href="/">Home</Link>
+        <Link href="/projects">Projects</Link>
+        <Link href="/contact">Contact</Link>
+      </Navbar.Content>
+      <Navbar.Content>
+        <Navbar.Link color="inherit" href="/login">
+          Login
+        </Navbar.Link>
+      </Navbar.Content>
+      <Navbar.Collapse>
+        {collapseItems.map(({ label, route }) => (
+          <Navbar.CollapseItem key={label}>
+            <Link color="inherit" href={route}>
+              {label}
+            </Link>
+          </Navbar.CollapseItem>
+        ))}
+      </Navbar.Collapse>
+    </Navbar>
   )
 }
 
-export default Navbar
+export default NavbarComponent

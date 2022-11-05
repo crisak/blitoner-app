@@ -1,7 +1,11 @@
 const getComments = async (idPost: string) => {
-  return await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${idPost}/comments`
-  ).then((res) => res.json())
+  await new Promise((res: any) => setTimeout(res, 5000))
+  throw new Error('Error request by Cristian')
+
+  // return await fetch(
+  //   `https://jsonplaceholder.typicode.com/posts/${idPost}/comments`,
+  //   { next: { revalidate: 60 } }
+  // ).then((res) => res.json())
 }
 
 const CommentsPage = async ({ params }) => {

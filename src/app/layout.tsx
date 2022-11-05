@@ -26,7 +26,7 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
       <head>
         <title>Blitoner - Blog</title>
       </head>
-      <body>
+      <body style={{ width: '100%' }}>
         <Provider store={store}>
           <NextThemesProvider
             defaultTheme="system"
@@ -39,13 +39,13 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
             <NextUIProvider>
               <Navbar />
               <main>{children}</main>
-              <ToastContainer
+              {/* <ToastContainer
                 position="bottom-right"
                 autoClose={5000}
                 hideProgressBar={true}
                 closeOnClick
                 pauseOnHover
-              />
+              /> */}
             </NextUIProvider>
           </NextThemesProvider>
         </Provider>

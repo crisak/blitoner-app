@@ -1,2 +1,2 @@
-export * from './Text'
-export * from './navbar/Navbar'
+export * from './CardImage'
+export * from './SplashSocial'
