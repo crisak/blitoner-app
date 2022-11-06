@@ -44,7 +44,14 @@ const NavbarComponent = () => {
       </Navbar.Brand>
       <Navbar.Content enableCursorHighlight hideIn="xs" variant="underline">
         <Link href="/">Home</Link>
-        <Link href="/projects">Projects</Link>
+        <Link
+          href={{
+            pathname: '/projects',
+            query: { category: 'graffiti' }
+          }}
+        >
+          Projects
+        </Link>
         <Link href="/contact">Contact</Link>
       </Navbar.Content>
       <Navbar.Content>

@@ -8,12 +8,16 @@ import {
   createResultProjectAdapter
 } from '../adapters'
 
+const filterDefaultProjects = { category: 'graffiti' }
+
 // TODO - Remove setTimeout
-export const getAll = async (): Promise<Project[]> => {
+export const getAll = async ({ category } = filterDefaultProjects): Promise<
+  Project[]
+> => {
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       const url = process.env.NEXT_PUBLIC_BLITONER_API
-      const response = await fetch(`${url}/projects`)
+      const response = await fetch(`${url}/projects?category=${category}`)
       const data = await response.json()
 
       if (!response.ok) {
@@ -25,12 +29,6 @@ export const getAll = async (): Promise<Project[]> => {
       resolve(dataAdapter)
     }, 1000)
   })
-  const url = process.env.NEXT_PUBLIC_BLITONER_API
-  const { data } = await axios.get<GetProjectsDto>(`${url}/projects`)
-
-  const dataAdapter = getProjectsAdapter(data)
-
-  return dataAdapter
 }
 
 // GET - https://9g0kxdwyn1.execute-api.us-east-1.amazonaws.com/dev/projects

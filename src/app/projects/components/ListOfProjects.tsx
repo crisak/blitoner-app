@@ -15,8 +15,6 @@ type ListOfProjectsProps = { projects: Project[] }
 const ListOfProjects = ({ projects }: ListOfProjectsProps) => {
   const dispatch = useDispatch()
 
-  console.log('projects->', projects)
-
   useEffect(() => {
     dispatch(loadProjects(projects))
     // eslint-disable-next-line react-hooks/exhaustive-deps
