@@ -1,7 +1,9 @@
-import { Text } from '@/components'
+'use client'
+
 import { CategoriesSummaryContents } from '@/modules/categories/models'
 import { Button, Container } from '@nextui-org/react'
 import { CardLinkImage } from './CardImage'
+import { Text } from '@/components'
 import {
   CategoryContent,
   ContentProjects,

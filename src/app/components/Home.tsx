@@ -9,11 +9,11 @@ import Categories from './Categories'
 const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
 
-      {/* <FloatingSocials /> */}
+      <FloatingSocials />
 
-      {/* <Categories categories={categories} /> */}
+      <Categories categories={categories} />
     </>
   )
 }

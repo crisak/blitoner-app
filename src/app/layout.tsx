@@ -5,9 +5,7 @@ import 'react-toastify/dist/ReactToastify.min.css'
 
 import { Provider } from 'react-redux'
 import store from '@/redux/store'
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { createTheme, NextUIProvider } from '@nextui-org/react'
-import { CssBaseline } from '@nextui-org/react'
 
 import { Navbar, Footer } from '@/components'
 
@@ -32,9 +30,9 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
       <body>
         <NextUIProvider theme={darkTheme}>
           <Provider store={store}>
-            {/* <Navbar /> */}
+            <Navbar />
             <main>{children}</main>
-            {/* <Footer /> */}
+            <Footer />
           </Provider>
         </NextUIProvider>
       </body>

@@ -8,9 +8,10 @@ class CategoryService {
   async getCategoriesSummaryContents(
     filter = paramsDefault
   ): Promise<CategoriesSummaryContents> {
-    return fetch(
+    const result = fetch(
       `https://9g0kxdwyn1.execute-api.us-east-1.amazonaws.com/dev/categories/summary-contents?category=${filter.graffiti}`
     ).then((res) => res.json())
+    return result
   }
 }
 

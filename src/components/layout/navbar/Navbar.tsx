@@ -1,9 +1,7 @@
-// import { Navbar as NavbarStyled, NavLink } from '@/styled-components'
-import { Navbar, Text, useTheme } from '@nextui-org/react'
+import { Grid, Navbar, Text, useTheme } from '@nextui-org/react'
 import Link from 'next/link'
 import BlitoFrontPage from '@/assets/images/home-blito_bg_white.png'
 import Image from 'next/image'
-// import { Link } from '@nextui-org/react'
 
 const collapseItems = [
   {
@@ -29,7 +27,10 @@ const NavbarComponent = () => {
   return (
     <Navbar isBordered={isDark} variant="sticky">
       <Navbar.Brand>
-        <Navbar.Toggle css={{ mr: '$8' }} aria-label="toggle navigation" />
+        <Grid sm={0}>
+          <Navbar.Toggle css={{ mr: '$8' }} aria-label="toggle navigation" />
+        </Grid>
+
         <Image
           src={BlitoFrontPage}
           width={40}
