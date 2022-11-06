@@ -7,8 +7,6 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { createTheme, NextUIProvider } from '@nextui-org/react'
 import { ToastContainer } from 'react-toastify'
 import { Navbar, Footer } from '@/components'
-import { Suspense } from 'react'
-import { CssBaseline } from '@nextui-org/react'
 
 const lightTheme = createTheme({
   type: 'light'
@@ -27,6 +25,10 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
     <html>
       <head>
         <title>Blitoner - Blog</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
       </head>
       <body>
         <Provider store={store}>
@@ -40,15 +42,17 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
           >
             <NextUIProvider>
               <Navbar />
-              <main>{children}</main>
+              <main>
+                <ToastContainer
+                  position="bottom-right"
+                  autoClose={5000}
+                  hideProgressBar={true}
+                  closeOnClick
+                  pauseOnHover
+                />
+                {children}
+              </main>
               <Footer />
-              <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={true}
-                closeOnClick
-                pauseOnHover
-              />
             </NextUIProvider>
           </NextThemesProvider>
         </Provider>

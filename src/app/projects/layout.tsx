@@ -1,10 +1,17 @@
-const ProjectsLayout = ({ children }) => {
+import Head from 'next/head'
+
+type ProjectsLayoutProps = { children: JSX.Element }
+
+const ProjectsLayout = ({ children }: ProjectsLayoutProps) => {
   return (
-    <div>
-      <h2>Projects</h2>
-      <p>This projects with great</p>
+    <>
+      <Head>
+        <title>Proyectos</title>
+        <meta name="description" content="Lista de proyecto desarrollador" />
+      </Head>
+
       {children}
-    </div>
+    </>
   )
 }
 
