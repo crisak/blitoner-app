@@ -1,4 +1,5 @@
 'use client'
+
 import '@/styles/globals.css'
 import 'react-toastify/dist/ReactToastify.min.css'
 
@@ -6,11 +7,9 @@ import { Provider } from 'react-redux'
 import store from '@/redux/store'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { createTheme, NextUIProvider } from '@nextui-org/react'
-import { Navbar, Footer } from '@/components'
+import { CssBaseline } from '@nextui-org/react'
 
-const lightTheme = createTheme({
-  type: 'light'
-})
+import { Navbar, Footer } from '@/components'
 
 const darkTheme = createTheme({
   type: 'dark'
@@ -23,30 +22,21 @@ interface RootLayoutProps {
 function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html>
-      {/* <head> */}
-      {/* <title>Blitoner - Blog</title> */}
-      {/* <meta
+      <head>
+        <title>Blitoner - Blog</title>
+        <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0"
-        ></meta> */}
-      {/* </head> */}
+        ></meta>
+      </head>
       <body>
-        {/* <Provider store={store}>
-          <NextThemesProvider
-            defaultTheme="system"
-            attribute="class"
-            value={{
-              light: lightTheme.className,
-              dark: darkTheme.className
-            }}
-          > */}
-        {/* <NextUIProvider> */}
-        {/* <Navbar /> */}
-        <main>{children}</main>
-        {/* <Footer /> */}
-        {/* </NextUIProvider> */}
-        {/* </NextThemesProvider>
-        </Provider> */}
+        <NextUIProvider theme={darkTheme}>
+          <Provider store={store}>
+            {/* <Navbar /> */}
+            <main>{children}</main>
+            {/* <Footer /> */}
+          </Provider>
+        </NextUIProvider>
       </body>
     </html>
   )
