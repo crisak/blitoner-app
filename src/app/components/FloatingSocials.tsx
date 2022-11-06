@@ -1,5 +1,5 @@
 import { BsYoutube, BsFacebook, BsInstagram } from 'react-icons/bs'
-import { ContainerSocialsHome, LinkSocial } from '../Home.styles'
+import { ContainerSocialsHome, LinkSocial } from './Home.styles'
 import { SplashSocial } from './SplashSocial'
 import SplashImage1 from '@/assets/images/splash1.png'
 import SplashImage2 from '@/assets/images/splash2.png'

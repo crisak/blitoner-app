@@ -15,7 +15,11 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <FooterStyle>
+    <FooterStyle
+      css={{
+        bgBlur: '$background'
+      }}
+    >
       <Container>
         <Grid.Container gap={2}>
           <Grid md direction="column">

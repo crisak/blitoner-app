@@ -1,22 +1,11 @@
-import { Project } from './models'
 import { projectService } from './services'
 
 import ListOfProjects from './components/ListOfProjects'
 
-export const getAllProjects = async () => {
-  const projects: Project[] = await projectService.getAll()
-
-  return projects
-}
-
 const ProjectsPage = async () => {
-  const projects = await getAllProjects()
+  const projects = await projectService.getAll()
 
-  return (
-    <>
-      <ListOfProjects projects={projects} />
-    </>
-  )
+  return <ListOfProjects projects={projects} />
 }
 
 export default ProjectsPage

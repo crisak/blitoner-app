@@ -23,7 +23,7 @@ export const getAll = async (): Promise<Project[]> => {
       const dataAdapter = getProjectsAdapter(data)
 
       resolve(dataAdapter)
-    }, 10000)
+    }, 1000)
   })
   const url = process.env.NEXT_PUBLIC_BLITONER_API
   const { data } = await axios.get<GetProjectsDto>(`${url}/projects`)

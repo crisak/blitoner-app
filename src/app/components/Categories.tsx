@@ -1,40 +1,18 @@
-'use client'
-
 import { Text } from '@/components'
-import BlitoFrontPage from '@/assets/images/home-blito_bg_white.png'
-
 import { CategoriesSummaryContents } from '@/modules/categories/models'
+import { Button, Container } from '@nextui-org/react'
+import { CardLinkImage } from './CardImage'
 import {
-  ContentProjects,
-  Header,
   CategoryContent,
+  ContentProjects,
   SectionCategory
 } from './Home.styles'
-import { CardLinkImage, FloatingSocials } from './components'
-import { Button, Container } from '@nextui-org/react'
-import Image from 'next/image'
 
-const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
+type CategoriesProps = { categories: CategoriesSummaryContents }
+
+const Categories = ({ categories }: CategoriesProps) => {
   return (
     <>
-      <Header>
-        <Image
-          src={BlitoFrontPage}
-          width={100}
-          height={110}
-          alt="Logo de portada"
-          color="red"
-        />
-        <Text h1 size="5rem">
-          Blito
-        </Text>
-        <Text h2 css={{ textAlign: 'center' }}>
-          Deja volar tu imaginación
-        </Text>
-      </Header>
-
-      <FloatingSocials />
-
       {categories.slice(0, 5).map((category, index) => {
         const odd = Boolean(index % 2)
         return (
@@ -62,4 +40,4 @@ const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
   )
 }
 
-export default Home
+export default Categories

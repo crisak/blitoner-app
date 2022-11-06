@@ -15,10 +15,12 @@ type ListOfProjectsProps = { projects: Project[] }
 const ListOfProjects = ({ projects }: ListOfProjectsProps) => {
   const dispatch = useDispatch()
 
+  console.log('projects->', projects)
+
   useEffect(() => {
     dispatch(loadProjects(projects))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [projects])
 
   return (
     <Container>
@@ -33,7 +35,7 @@ const ListOfProjects = ({ projects }: ListOfProjectsProps) => {
       <Spacer y={3} />
       <Grid.Container gap={3} justify="center">
         {projects.map((project) => (
-          <Grid key={project.id} xs={4}>
+          <Grid key={project.id} xs={12} md={4}>
             <CardProject {...project} />
           </Grid>
         ))}

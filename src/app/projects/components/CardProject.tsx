@@ -1,13 +1,9 @@
 import { Card, Col, Row, Button, Text } from '@nextui-org/react'
-import { Project } from './../models'
+import { Project } from '../models'
 
-type CardProjectProps = { name: string; categoryID: string; location: any }
+type CardProjectProps = Project
 
-const CardProject = ({
-  name,
-  categoryID,
-  location
-}: CardProjectProps): JSX.Element => {
+const CardProject = ({ name, categoryID, location }: CardProjectProps) => {
   return (
     <Card css={{ w: '100%', h: '400px' }}>
       <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
@@ -58,7 +54,7 @@ const CardProject = ({
                 flat
                 auto
                 rounded
-                css={{ color: '#94f9f0', bg: '#94f9f026' }}
+                css={{ color: '#ffffff9f', bg: '#0072F526' }}
               >
                 <Text
                   css={{ color: 'inherit' }}
@@ -66,7 +62,7 @@ const CardProject = ({
                   weight="bold"
                   transform="uppercase"
                 >
-                  View more
+                  Ver proyecto
                 </Text>
               </Button>
             </Row>

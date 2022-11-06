@@ -1,2 +1,3 @@
-export * as authService from './authService'
-export * as localStorageService from './local-storage.service'
+export * from './authService'
+export * from './category.service'
+// export * from './local-storage.service';
