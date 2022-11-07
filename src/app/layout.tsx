@@ -8,6 +8,7 @@ import store from '@/redux/store'
 import { createTheme, NextUIProvider } from '@nextui-org/react'
 
 import { Navbar, Footer } from '@/components'
+import { ParallaxProvider } from 'react-scroll-parallax'
 
 const darkTheme = createTheme({
   type: 'dark'
@@ -28,13 +29,15 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
         ></meta>
       </head>
       <body>
-        <NextUIProvider theme={darkTheme}>
-          <Provider store={store}>
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-          </Provider>
-        </NextUIProvider>
+        <ParallaxProvider>
+          <NextUIProvider theme={darkTheme}>
+            <Provider store={store}>
+              <Navbar />
+              <main>{children}</main>
+              <Footer />
+            </Provider>
+          </NextUIProvider>
+        </ParallaxProvider>
       </body>
     </html>
   )
