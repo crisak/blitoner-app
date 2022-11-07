@@ -23,7 +23,7 @@ const ListOfProjects = ({ projects }: ListOfProjectsProps) => {
   return (
     <Container>
       <Spacer y={2} />
-      <Text h2 weight="bold">
+      <Text h2 weight="bold" size="$7xl">
         Proyectos
         <Link href="/projects" style={{ float: 'right' }}>
           <BsArrowClockwise size={25} />
@@ -32,9 +32,16 @@ const ListOfProjects = ({ projects }: ListOfProjectsProps) => {
 
       <Spacer y={3} />
       <Grid.Container gap={3} justify="center">
-        {projects.map((project) => (
-          <Grid key={project.id} xs={12} md={4}>
-            <CardProject {...project} />
+        {projects.slice(0, 10).map((project) => (
+          <Grid xs={12} sm={6} md={4} key={project.id} justify="center">
+            <Link
+              href={{
+                pathname: '/projects/[id]',
+                query: { id: project.id }
+              }}
+            >
+              <CardProject {...project} />
+            </Link>
           </Grid>
         ))}
       </Grid.Container>

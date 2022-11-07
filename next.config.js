@@ -5,7 +5,7 @@ const nextConfig = {
   },
   reactStrictMode: false,
   images: {
-    domains: ['i.pinimg.com', 'picsum.photos']
+    domains: ['i.pinimg.com', 'picsum.photos', 'tinyurl.com']
   }
 }
 

@@ -1,75 +1,161 @@
-import { Card, Col, Row, Button, Text } from '@nextui-org/react'
+'use client'
+import { Box, Text } from '@/components'
+import { formatDate } from '@/utils'
+import { CSS } from '@nextui-org/react'
 import { Project } from '../models'
+import Image from 'next/image'
+import { BsPinMap } from 'react-icons/bs'
+import { BORDER_RADIUS } from '@/styles/variables'
+
+function randomIntFromInterval(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
 
 type CardProjectProps = Project
 
-const CardProject = ({ name, categoryID, location }: CardProjectProps) => {
+const MEASURE = 300
+
+const selector = '& .content-text h3, & .content-text span'
+
+const styles: CSS = {
+  display: 'grid',
+  gridTemplateColumns: '1fr',
+  gridTemplateRows: `${MEASURE * 1.5}px 150px`,
+  position: 'relative',
+  boxSizing: 'border-box',
+
+  '&::after': {
+    content: '',
+    width: '30%',
+    position: 'absolute',
+    bottom: '0',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    height: '1px',
+    backgroundColor: '$gray300',
+    transition: 'all .3s'
+  },
+
+  [selector]: {
+    transition: 'all .3s',
+    opacity: 0.7
+  },
+
+  '&:hover': {
+    [selector]: {
+      opacity: 1
+    } as CSS,
+
+    '&::after': {
+      backgroundColor: '$primaryBorderHover',
+      width: '80%'
+    },
+
+    img: {
+      border: '1px solid $primarySolidHover',
+      boxShadow: `
+      rgba(255, 255, 255, .5) 0px 0px 0.01rem,
+      rgba(255, 255, 255, .5) 0px 0px 0.01rem,
+      rgba(54, 148, 255, .5) 0px 0px 0.5rem,
+      rgba(54, 148, 255, .5) 0px 0px 0.5rem,
+      rgba(54, 148, 255, .5) 0px 0px 0.5rem,
+      rgba(54, 148, 255, .5) 0px 0px 0.5rem inset`
+    } as CSS
+  }
+}
+
+const stylesContainerStyles: CSS = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%'
+}
+
+let MEASURE_SUM_RIGHT = 20
+let MEASURE_SUM_TOP = 2
+
+const rotates = [...Array(4).fill(0)].reduce((prev, _, index) => {
+  const indexCal: number = index + 1
+
+  const calcRight: number = MEASURE_SUM_RIGHT * indexCal
+  const calcTop: number = MEASURE_SUM_TOP * indexCal
+
+  const isEven = Boolean(index % 2 === 0)
+
+  const rotate = isEven
+    ? randomIntFromInterval(5, 9)
+    : randomIntFromInterval(350, 365)
+
+  const key = `&:nth-child(${index + 1})`
+
+  return {
+    ...prev,
+    [key]: {
+      top: calcTop,
+      right: calcRight,
+      transform: `rotate(${rotate}deg)`,
+      transition: 'all .3s',
+      zIndex: 1,
+
+      '&:hover': {
+        transform: `scale(1.3) rotate(0deg)`,
+        zIndex: 2
+      }
+    } as CSS
+  }
+}, {} as CSS)
+
+const styledContentImages: CSS = {
+  position: 'relative',
+  height: `${MEASURE + MEASURE_SUM_TOP * 4}px`,
+  width: `${MEASURE + MEASURE_SUM_RIGHT * 4}px`,
+
+  '& > *': {
+    position: 'absolute',
+    top: '0',
+    right: '40%',
+    ...rotates,
+    '& img, &': {
+      borderRadius: BORDER_RADIUS
+    }
+  }
+}
+
+const stylesContentText: CSS = {
+  pb: '$10',
+  textAlign: 'center',
+  boxSizing: 'border-box'
+}
+
+const CardProject = ({ name, date, location, banner }: CardProjectProps) => {
   return (
-    <Card css={{ w: '100%', h: '400px' }}>
-      <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
-        <Col>
-          <Text size={12} weight="bold" transform="uppercase" color="#9E9E9E">
-            {categoryID}
+    <Box css={styles}>
+      <Box css={stylesContainerStyles}>
+        <Box css={styledContentImages}>
+          <Image src={banner} width={MEASURE} height={MEASURE} alt={name} />
+
+          <Image src={banner} width={MEASURE} height={MEASURE} alt={name} />
+
+          <Image src={banner} width={MEASURE} height={MEASURE} alt={name} />
+
+          <Image src={banner} width={MEASURE} height={MEASURE} alt={name} />
+        </Box>
+      </Box>
+
+      <Box css={stylesContentText} className="content-text">
+        <Text h3 css={{ mb: '$2' }}>
+          {name}
+        </Text>
+        <Text span>{formatDate(date)}</Text>
+        <Box>
+          <Text span css={{ mr: '$5' }}>
+            <BsPinMap />
           </Text>
-          <Text h3 color="white">
-            {name}
-          </Text>
-        </Col>
-      </Card.Header>
-      <Card.Body css={{ p: 0 }}>
-        <Card.Image
-          src="https://nextui.org/images/card-example-5.jpeg"
-          objectFit="cover"
-          width="100%"
-          height="100%"
-          alt="Relaxing app background"
-        />
-      </Card.Body>
-      <Card.Footer
-        isBlurred
-        css={{
-          position: 'absolute',
-          bgBlur: '#0f111466',
-          borderTop: '$borderWeights$light solid $gray800',
-          bottom: 0,
-          zIndex: 1
-        }}
-      >
-        <Row>
-          <Col>
-            <Row>
-              <Col>
-                <Text color="#d1d1d1" size={12}>
-                  {location.country}
-                </Text>
-                <Text color="#d1d1d1" size={12}>
-                  {location.state}
-                </Text>
-              </Col>
-            </Row>
-          </Col>
-          <Col>
-            <Row justify="flex-end">
-              <Button
-                flat
-                auto
-                rounded
-                css={{ color: '#ffffff9f', bg: '#0072F526' }}
-              >
-                <Text
-                  css={{ color: 'inherit' }}
-                  size={12}
-                  weight="bold"
-                  transform="uppercase"
-                >
-                  Ver proyecto
-                </Text>
-              </Button>
-            </Row>
-          </Col>
-        </Row>
-      </Card.Footer>
-    </Card>
+
+          <Text span>{location.state}</Text>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 export default CardProject

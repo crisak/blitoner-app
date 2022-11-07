@@ -24,7 +24,14 @@ const ProjectsPage = () => {
   if (error) return <div>failed to load</div>
   if (!projects) return <LoadingProgress />
 
+  /**
+   * todo - Add component of filters
+   */
+
   return <ListOfProjects projects={projects as Project[]} />
+  /**
+   * todo - Add more categories with recommendations
+   */
 }
 
 export default ProjectsPage
