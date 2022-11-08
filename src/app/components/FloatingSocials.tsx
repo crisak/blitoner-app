@@ -9,7 +9,7 @@ import { useScroll } from '@/hooks'
 const FloatingSocials = () => {
   const scroll = useScroll()
 
-  const opacity = (1 * scroll.hideHomePage) / scroll.heightWindow
+  const opacity = (1 * (scroll.hideHomePage + 1000)) / scroll.heightWindow
 
   return (
     <ContainerSocialsHome

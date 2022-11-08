@@ -15,7 +15,7 @@ import { styled } from '@nextui-org/react'
 const ImageSplash = styled(Image, {
   opacity: '.6',
   position: 'absolute',
-  right: '-42%',
+  right: '-42rem',
   top: '0'
 })
 
@@ -23,31 +23,17 @@ const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
   return (
     <>
       <ParallaxBanner style={{ height: `calc(100vh - ${HEIGHT_NAVBAR})` }}>
-        <ParallaxBannerLayer image={BlitoFrontPage.src} speed={10} />
-        <ParallaxBannerLayer speed={-30}>
+        <ParallaxBannerLayer image={BlitoFrontPage.src} speed={-20} />
+        <ParallaxBannerLayer speed={10}>
           <ImageSplash
             src={SplahPage.src as string}
             alt="Photo of background"
             width={900}
             height={900}
-          />
-        </ParallaxBannerLayer>
-        <ParallaxBannerLayer speed={0}>
-          <ImageSplash
-            src={SplahPage.src as string}
-            alt="Photo of background"
-            width={900}
-            height={900}
-            css={{
-              bottom: '5%',
-              left: '-43%',
-              right: 'auto',
-              top: 'auto'
-            }}
           />
         </ParallaxBannerLayer>
 
-        <ParallaxBannerLayer speed={-20}>
+        <ParallaxBannerLayer speed={20}>
           <Header />
         </ParallaxBannerLayer>
       </ParallaxBanner>

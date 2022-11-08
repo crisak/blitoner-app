@@ -1,7 +1,7 @@
 'use client'
 
 import { CategoriesSummaryContents } from '@/modules/categories/models'
-import { Button, Container } from '@nextui-org/react'
+import { Button, Container, styled } from '@nextui-org/react'
 import { CardLinkImage } from './CardImage'
 import { Text } from '@/components'
 import {
@@ -9,6 +9,14 @@ import {
   ContentProjects,
   SectionCategory
 } from './Home.styles'
+import { ParallaxBanner, ParallaxBannerLayer } from 'react-scroll-parallax'
+import SplahPage from '@/assets/images/splah-push.png'
+import Image from 'next/image'
+import { randomIntFromInterval } from '@/utils'
+
+const ImageSplash = styled(Image, {
+  position: 'absolute'
+})
 
 type CategoriesProps = { categories: CategoriesSummaryContents }
 
@@ -16,26 +24,54 @@ const Categories = ({ categories }: CategoriesProps) => {
   return (
     <>
       {categories.slice(0, 5).map((category, index) => {
-        const odd = Boolean(index % 2)
+        const odd = Boolean((index + 1) % 2)
+
+        const rotate = odd
+          ? randomIntFromInterval(0, 268, { isDecimal: true })
+          : randomIntFromInterval(266, 352, { isDecimal: true })
+
         return (
-          <Container key={index}>
-            <SectionCategory className={odd ? `reverse-section` : ''}>
-              <CategoryContent>
-                <Text h2>{category.name}</Text>
-                <Text css={{ mb: '$10' }}>{category.description}</Text>
-                <Button>Ver más</Button>
-              </CategoryContent>
-              <ContentProjects>
-                {category.projects.slice(0, 5).map((project, index) => (
-                  <CardLinkImage
-                    key={project.id}
-                    className={`card-image__card-${index + 1}`}
-                    {...project}
-                  />
-                ))}
-              </ContentProjects>
-            </SectionCategory>
-          </Container>
+          <ParallaxBanner key={index} style={{ height: `100vh` }}>
+            <ParallaxBannerLayer
+              speed={-20}
+              scale={[0.9, 1]}
+              opacity={[0.5, 0.8]}
+            >
+              <ImageSplash
+                src={SplahPage.src as string}
+                alt="Photo of background"
+                width={900}
+                height={900}
+                css={{
+                  left: odd ? '-47rem' : 'auto',
+                  right: odd ? 'auto' : '-47rem',
+                  top: '15rem',
+                  transform: `rotate(${rotate}deg)`
+                }}
+              />
+            </ParallaxBannerLayer>
+
+            <ParallaxBannerLayer speed={10}>
+              <Container>
+                <SectionCategory className={odd ? `reverse-section` : ''}>
+                  <CategoryContent>
+                    <Text h2>{category.name}</Text>
+                    <Text css={{ mb: '$10' }}>{category.description}</Text>
+                    <Button>Ver más</Button>
+                  </CategoryContent>
+                  <ContentProjects>
+                    {category.projects.slice(0, 5).map((project, index) => (
+                      <CardLinkImage
+                        key={project.id}
+                        className={`card-image__card-${index + 1}`}
+                        {...project}
+                      />
+                    ))}
+                  </ContentProjects>
+                </SectionCategory>
+              </Container>
+            </ParallaxBannerLayer>
+          </ParallaxBanner>
         )
       })}
     </>
