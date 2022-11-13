@@ -86,7 +86,7 @@ const rotates = [...Array(4).fill(0)].reduce((prev, _, index) => {
     ? randomIntFromInterval(5, 9)
     : randomIntFromInterval(350, 365)
 
-  const key = `&:nth-child(${index + 1})`
+  const key: string = `&:nth-child(${index + 1})`
 
   return {
     ...prev,

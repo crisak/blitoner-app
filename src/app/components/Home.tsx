@@ -33,12 +33,13 @@ const Home = ({ categories }: { categories: CategoriesSummaryContents }) => {
           />
         </ParallaxBannerLayer>
 
-        <ParallaxBannerLayer speed={20}>
+        <ParallaxBannerLayer speed={-5}>
           <Header />
         </ParallaxBannerLayer>
       </ParallaxBanner>
 
       <Categories categories={categories} />
+
       <FloatingSocials />
     </>
   )

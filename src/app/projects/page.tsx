@@ -6,7 +6,15 @@ import { fetcher } from '@/utils'
 import ListOfProjects from './components/ListOfProjects'
 import { Project } from './models'
 import { useSearchParams } from 'next/navigation'
-import { LoadingProgress } from '@/components'
+import { Breadcrumbs, BreadcrumbsProps, LoadingProgress } from '@/components'
+import { Container, Spacer } from '@nextui-org/react'
+
+const breadcrumbs = {
+  links: [
+    { label: 'Home', href: '/' },
+    { label: 'Projects', href: '/projects' }
+  ]
+} as BreadcrumbsProps
 
 const ProjectsPage = () => {
   const params = useSearchParams()
@@ -28,7 +36,16 @@ const ProjectsPage = () => {
    * todo - Add component of filters
    */
 
-  return <ListOfProjects projects={projects as Project[]} />
+  return (
+    <>
+      <Container>
+        <Spacer y={2} />
+        <Breadcrumbs {...breadcrumbs} />
+        <Spacer y={2} />
+      </Container>
+      <ListOfProjects projects={projects as Project[]} />
+    </>
+  )
   /**
    * todo - Add more categories with recommendations
    */

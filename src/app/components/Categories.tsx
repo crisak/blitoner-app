@@ -10,7 +10,7 @@ import {
   SectionCategory
 } from './Home.styles'
 import { ParallaxBanner, ParallaxBannerLayer } from 'react-scroll-parallax'
-import SplahPage from '@/assets/images/splah-push.png'
+import SplashPage from '@/assets/images/splah-push.png'
 import Image from 'next/image'
 import { randomIntFromInterval } from '@/utils'
 
@@ -38,7 +38,7 @@ const Categories = ({ categories }: CategoriesProps) => {
               opacity={[0.5, 0.8]}
             >
               <ImageSplash
-                src={SplahPage.src as string}
+                src={SplashPage.src as string}
                 alt="Photo of background"
                 width={900}
                 height={900}
