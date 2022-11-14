@@ -2,11 +2,14 @@
 import { useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { images } from './images'
-import { HEIGHT, WIDTH } from './ImageGallery'
 import StackGrid from 'react-stack-grid'
 import { BORDER_RADIUS } from '@/styles/variables'
 import { Box } from '@/components'
 import Image from 'next/image'
+
+export const WIDTH = 236
+
+export const HEIGHT = 354
 
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
