@@ -1,4 +1,4 @@
-import { Grid, Navbar, Text, useTheme } from '@nextui-org/react'
+import { Container, Grid, Navbar, Text, useTheme } from '@nextui-org/react'
 import Link from 'next/link'
 import BlitoFrontPage from '@/assets/images/home-blito_bg_white.png'
 import Image from 'next/image'
@@ -25,7 +25,19 @@ const collapseItems = [
 const NavbarComponent = () => {
   const { isDark } = useTheme()
   return (
-    <Navbar isBordered={isDark} variant="sticky">
+    <Navbar
+      css={{
+        background: 'rgba(0, 0, 0, 0.6)',
+        backdropFilter: 'saturate(180%) blur(10px)',
+        '& .nextui-navbar-container': {
+          background: 'none',
+          backdropFilter: 'none',
+          borderBottom: '0px'
+        }
+      }}
+      isBordered={isDark}
+      variant="sticky"
+    >
       <Navbar.Brand>
         <Grid sm={0}>
           <Navbar.Toggle css={{ mr: '$8' }} aria-label="toggle navigation" />
@@ -59,6 +71,7 @@ const NavbarComponent = () => {
           Login
         </Link>
       </Navbar.Content>
+
       <Navbar.Collapse>
         {collapseItems.map(({ label, route }) => (
           <Navbar.CollapseItem key={label}>
