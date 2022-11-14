@@ -9,6 +9,20 @@ export interface Project {
   banner: string
   description: string
   categoryID: string
+  nameCategory: string
+  tags: string
+  collaborators: {
+    name: string
+    username: string
+    email: string
+    socials: {
+      id: number
+      url: string
+      username: string
+      type: 'FACEBOOK' | 'INSTAGRAM' | 'YOUTUBE' | 'TWITTER'
+    }[]
+    photoUrl: string
+  }[]
   location: {
     position: { latitude: number; longitude: number }
     address: string
@@ -27,7 +41,10 @@ export const ProjectDefaultState: Project = {
   banner: '',
   description: '',
   categoryID: '',
+  nameCategory: '',
   userID: '',
+  tags: '',
+  collaborators: [],
   location: {
     position: { latitude: 0, longitude: 0 },
     address: '',

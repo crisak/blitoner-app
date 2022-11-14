@@ -1,12 +1,15 @@
 'use client'
 
-import { Breadcrumbs, BreadcrumbsProps } from '@/components'
+import { Box, Breadcrumbs, BreadcrumbsProps, Text } from '@/components'
 import { fetcher } from '@/utils'
-import { Container, Spacer } from '@nextui-org/react'
-import { useSearchParams } from 'next/navigation'
+import { Button, Container, Row, Spacer } from '@nextui-org/react'
+import { Loading } from '@nextui-org/react'
+import { useState } from 'react'
 import useSWR from 'swr'
 import { Project } from '../models'
-import DetailProject from './components/DetailProject'
+import { InfoDetail, ContentGallery } from './components'
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
+import { HEIGHT_NAVBAR } from '@/styles/variables'
 
 const breadcrumbs = {
   links: [
@@ -23,9 +26,11 @@ type ProjectIdPage = {
 }
 
 const ProjectIdPage = ({ params }: ProjectIdPage) => {
-  console.log('any->', params.id)
-
-  const { data: project } = useSWR<Project>(`/projects/${params.id}`, fetcher)
+  const [isCollapse, setIsCollapse] = useState(false)
+  const { data: project, error } = useSWR<Project>(
+    `/projects/${params.id}`,
+    fetcher
+  )
 
   const paramsBreadcrumbs = {
     links: [
@@ -36,6 +41,27 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
     ]
   } as BreadcrumbsProps
 
+  const displayContent = () => {
+    if (!project) {
+      return (
+        <Row justify="center">
+          <Spacer y={2} />
+          <Loading type="points" size="xl" />
+        </Row>
+      )
+    }
+
+    if (error) {
+      return (
+        <Text blockquote color="error">
+          Se presento un error al cargar los datos
+        </Text>
+      )
+    }
+
+    return <Container>{project && <InfoDetail {...project} />}</Container>
+  }
+
   return (
     <>
       <Container>
@@ -43,7 +69,44 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
         <Breadcrumbs {...paramsBreadcrumbs} />
         <Spacer y={2} />
       </Container>
-      {project && <DetailProject {...project} />}
+
+      <Container>
+        <Box
+          css={{
+            display: 'grid',
+            gridTemplateColumns: `${isCollapse ? '0px' : '400px'} 1fr`,
+            gridTemplateRows: '1fr',
+            position: 'relative'
+          }}
+        >
+          <Button
+            css={{
+              left: 'calc(400px - 50px)',
+              top: 0,
+              position: 'absolute'
+            }}
+            auto
+            flat
+            onClick={() => setIsCollapse(!isCollapse)}
+          >
+            {isCollapse ? <BsArrowRight /> : <BsArrowLeft />}
+          </Button>
+          <Box
+            css={{
+              // maxHeight: `calc(100vh - ${HEIGHT_NAVBAR} - 200px)`,
+              overflow: 'auto',
+              position: 'sticky',
+              top: 500
+            }}
+          >
+            {displayContent()}
+          </Box>
+          <Box>
+            <ContentGallery />
+          </Box>
+        </Box>
+      </Container>
+      <Spacer y={2} />
     </>
   )
 }

@@ -2,7 +2,7 @@ import { styled } from '@nextui-org/react'
 import Link from 'next/link'
 
 const List = styled('ul', {
-  padding: '10px 16px',
+  padding: '10px 0px',
   listStyle: 'none',
   margin: '0',
   borderRadius: '$xs',

@@ -9,6 +9,7 @@ import { createTheme, NextUIProvider } from '@nextui-org/react'
 
 import { Navbar, Footer } from '@/components'
 import { ParallaxProvider } from 'react-scroll-parallax'
+import IcoBlitoWhite from '@/assets/images/icon-blito-white.ico'
 
 const darkTheme = createTheme({
   type: 'dark'
@@ -27,6 +28,12 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
           name="viewport"
           content="width=device-width, initial-scale=1.0"
         ></meta>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href={IcoBlitoWhite.src}
+        />
       </head>
       <body>
         <ParallaxProvider>
