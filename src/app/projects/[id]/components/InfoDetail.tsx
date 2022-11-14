@@ -1,5 +1,4 @@
 import { Box, GoogleMaps, Marker, Text } from '@/components'
-import { BORDER_RADIUS } from '@/styles/variables'
 import { formatDate } from '@/utils'
 import { Badge, Spacer } from '@nextui-org/react'
 import { Project } from '../../models'

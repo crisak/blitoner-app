@@ -8,8 +8,10 @@ import { useState } from 'react'
 import useSWR from 'swr'
 import { Project } from '../models'
 import { InfoDetail, ContentGallery } from './components'
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
+import { BsChevronDoubleRight, BsChevronDoubleLeft } from 'react-icons/bs'
 import { HEIGHT_NAVBAR } from '@/styles/variables'
+
+const WIDTH_ASIDE = '400px'
 
 const breadcrumbs = {
   links: [
@@ -53,13 +55,15 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
 
     if (error) {
       return (
-        <Text blockquote color="error">
-          Se presento un error al cargar los datos
-        </Text>
+        <Box>
+          <Text blockquote color="error">
+            Se presento un error al cargar los datos
+          </Text>
+        </Box>
       )
     }
 
-    return <Container>{project && <InfoDetail {...project} />}</Container>
+    return project && <InfoDetail {...project} />
   }
 
   return (
@@ -74,34 +78,65 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
         <Box
           css={{
             display: 'grid',
-            gridTemplateColumns: `${isCollapse ? '0px' : '400px'} 1fr`,
+            transition: 'all .3s ease-in-out',
+            gridTemplateColumns: `${isCollapse ? '0' : WIDTH_ASIDE} 1fr`,
             gridTemplateRows: '1fr',
-            position: 'relative'
+            gap: '$10'
           }}
         >
-          <Button
-            css={{
-              left: 'calc(400px - 50px)',
-              top: 0,
-              position: 'absolute'
-            }}
-            auto
-            flat
-            onClick={() => setIsCollapse(!isCollapse)}
-          >
-            {isCollapse ? <BsArrowRight /> : <BsArrowLeft />}
-          </Button>
           <Box
             css={{
-              // maxHeight: `calc(100vh - ${HEIGHT_NAVBAR} - 200px)`,
-              overflow: 'auto',
-              position: 'sticky',
-              top: 500
+              overflow: isCollapse ? 'hidden' : 'visible',
+              position: 'relative'
             }}
           >
-            {displayContent()}
+            <Box css={{ height: 0 }} />
+            <Box
+              css={{
+                position: 'sticky',
+                top: `calc(${HEIGHT_NAVBAR} + 1rem)`
+              }}
+            >
+              {!isCollapse && (
+                <Button
+                  css={{
+                    left: 'calc(400px - 50px)',
+                    position: 'absolute',
+                    zIndex: 20
+                  }}
+                  auto
+                  flat
+                  onClick={() => setIsCollapse(!isCollapse)}
+                >
+                  <BsChevronDoubleLeft />
+                </Button>
+              )}
+
+              {displayContent()}
+            </Box>
           </Box>
-          <Box>
+
+          <Box
+            css={{
+              position: 'relative'
+            }}
+          >
+            {isCollapse && (
+              <Button
+                css={{
+                  ml: '1rem',
+                  top: `calc(${HEIGHT_NAVBAR} + 1rem)`,
+                  position: 'sticky',
+                  zIndex: 20
+                }}
+                auto
+                flat
+                onClick={() => setIsCollapse(!isCollapse)}
+              >
+                <BsChevronDoubleRight />
+              </Button>
+            )}
+
             <ContentGallery />
           </Box>
         </Box>
