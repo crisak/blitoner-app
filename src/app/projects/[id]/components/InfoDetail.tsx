@@ -1,7 +1,8 @@
-import { Box, GoogleMaps, Marker, Text } from '@/components'
+import { Box, Text } from '@/components'
 import { formatDate } from '@/utils'
 import { Badge, Spacer } from '@nextui-org/react'
 import { Project } from '../../models'
+import ThumbnailMap from './ThumbnailMap'
 
 const InfoDetail = (project: Project) => {
   const displayTags = () => {
@@ -83,18 +84,7 @@ const InfoDetail = (project: Project) => {
       lng: project.location.position.longitude
     }
 
-    return (
-      <GoogleMaps
-        center={position}
-        zoom={14}
-        mapContainerStyle={{
-          maxWidth: '300px',
-          height: '300px'
-        }}
-      >
-        <Marker position={position} />
-      </GoogleMaps>
-    )
+    return <ThumbnailMap position={position} />
   }
 
   return (

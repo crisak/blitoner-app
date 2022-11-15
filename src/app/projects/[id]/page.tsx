@@ -12,7 +12,7 @@ import { BsChevronDoubleRight, BsChevronDoubleLeft } from 'react-icons/bs'
 import { HEIGHT_NAVBAR } from '@/styles/variables'
 import { SizeMe } from 'react-sizeme'
 
-const WIDTH_ASIDE = '400px'
+const WIDTH_ASIDE = '300px'
 
 const breadcrumbs = {
   links: [
@@ -103,7 +103,12 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
                   win !== undefined && win?.screen !== undefined
                     ? screen?.height || 0
                     : 0
-                const topSticky = screenValue - (size?.height || 0)
+
+                const valueSize = size?.height || 0
+
+                const heightCalculate = valueSize === Infinity ? 0 : valueSize
+
+                const topSticky = screenValue - heightCalculate
 
                 const MARGIN_BOTTOM_ASIDE = '4rem'
 

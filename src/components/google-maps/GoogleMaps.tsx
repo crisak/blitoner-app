@@ -19,7 +19,11 @@ const center = {
   lng: -74.2199577402386
 }
 
-const GoogleMaps = ({ mapContainerStyle, ...props }: GoogleMapProps) => {
+const GoogleMaps = ({
+  mapContainerStyle,
+  options,
+  ...props
+}: GoogleMapProps) => {
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GMAPS_API_KEY || ''
   })
@@ -30,14 +34,9 @@ const GoogleMaps = ({ mapContainerStyle, ...props }: GoogleMapProps) => {
      * to eg. setup options or create latLng object, it won't be available otherwise
      * feel free to render directly if you don't need that
      */
-    const options = {
-      zoomControlOptions: {
-        position: window.google.maps.ControlPosition.RIGHT_CENTER
-      },
-      fullscreenControl: false,
-      mapTypeControl: false,
-      streetViewControl: false,
-      styles: darkModeStyles
+    const optionsMaps = {
+      styles: darkModeStyles,
+      ...options
     } as google.maps.MapOptions
 
     const mapContainerStyles = {
@@ -47,7 +46,7 @@ const GoogleMaps = ({ mapContainerStyle, ...props }: GoogleMapProps) => {
 
     return (
       <GoogleMap
-        options={options}
+        options={optionsMaps}
         mapContainerStyle={mapContainerStyles}
         center={center}
         zoom={17}
