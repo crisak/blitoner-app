@@ -10,6 +10,7 @@ import { Project } from '../models'
 import { InfoDetail, ContentGallery } from './components'
 import { BsChevronDoubleRight, BsChevronDoubleLeft } from 'react-icons/bs'
 import { HEIGHT_NAVBAR } from '@/styles/variables'
+import { SizeMe } from 'react-sizeme'
 
 const WIDTH_ASIDE = '400px'
 
@@ -29,6 +30,7 @@ type ProjectIdPage = {
 
 const ProjectIdPage = ({ params }: ProjectIdPage) => {
   const [isCollapse, setIsCollapse] = useState(false)
+
   const { data: project, error } = useSWR<Project>(
     `/projects/${params.id}`,
     fetcher
@@ -91,31 +93,48 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
             }}
           >
             <Box css={{ height: 0 }} />
-            <Box
-              css={{
-                position: 'sticky',
-                top: `calc(${HEIGHT_NAVBAR} + 1rem)`
+            <SizeMe monitorHeight>
+              {({ size }) => {
+                let win = null
+                if (typeof window !== 'undefined') {
+                  win = window
+                }
+                const screenValue =
+                  win !== undefined && win?.screen !== undefined
+                    ? screen?.height || 0
+                    : 0
+                const topSticky = screenValue - (size?.height || 0)
+
+                const MARGIN_BOTTOM_ASIDE = '4rem'
+
+                return (
+                  <Box
+                    css={{
+                      position: 'sticky',
+                      top: `calc(${topSticky}px - ${HEIGHT_NAVBAR} - ${MARGIN_BOTTOM_ASIDE})`
+                    }}
+                  >
+                    {!isCollapse && (
+                      <Button
+                        css={{
+                          left: `calc(${WIDTH_ASIDE} - 50px)`,
+                          position: 'absolute',
+                          zIndex: 20
+                        }}
+                        auto
+                        flat
+                        onClick={() => setIsCollapse(!isCollapse)}
+                      >
+                        <BsChevronDoubleLeft />
+                      </Button>
+                    )}
+
+                    {displayContent()}
+                  </Box>
+                )
               }}
-            >
-              {!isCollapse && (
-                <Button
-                  css={{
-                    left: 'calc(400px - 50px)',
-                    position: 'absolute',
-                    zIndex: 20
-                  }}
-                  auto
-                  flat
-                  onClick={() => setIsCollapse(!isCollapse)}
-                >
-                  <BsChevronDoubleLeft />
-                </Button>
-              )}
-
-              {displayContent()}
-            </Box>
+            </SizeMe>
           </Box>
-
           <Box
             css={{
               position: 'relative'

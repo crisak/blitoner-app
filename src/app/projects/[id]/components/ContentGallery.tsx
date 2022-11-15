@@ -7,9 +7,9 @@ import { BORDER_RADIUS } from '@/styles/variables'
 import { Box } from '@/components'
 import Image from 'next/image'
 
-export const WIDTH = 236
+export const WIDTH = 200
 
-export const HEIGHT = 354
+export const HEIGHT = 300
 
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
