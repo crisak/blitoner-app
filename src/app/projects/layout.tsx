@@ -1,4 +1,4 @@
-type ProjectsLayoutProps = { children: JSX.Element }
+type ProjectsLayoutProps = { children: React.ReactNode }
 
 const ProjectsLayout = ({ children }: ProjectsLayoutProps) => {
   return <>{children}</>

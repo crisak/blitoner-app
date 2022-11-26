@@ -10,6 +10,8 @@ type Model = Pick<
   | 'location'
   | 'name'
   | 'userID'
+  | 'tags'
+  | 'nameCategory'
 >
 
 export type GetProjectsDto = Model[]

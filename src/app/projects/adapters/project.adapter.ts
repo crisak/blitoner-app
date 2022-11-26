@@ -16,7 +16,8 @@ export const getProjectsAdapter = (projects: GetProjectsDto): Project[] => {
       description,
       categoryID,
       location,
-      userID
+      userID,
+      tags
     } = project
 
     const position = location.position
@@ -37,16 +38,27 @@ export const getProjectsAdapter = (projects: GetProjectsDto): Project[] => {
         address: location.address,
         country: location.country,
         state: location.state
-      }
-    }
+      },
+      tags
+    } as Project
   })
 
   return projectsFilter
 }
 
 export const getProjectAdapter = (projectDto: GetProjectDto): Project => {
-  const { id, name, date, banner, description, categoryID, location, userID } =
-    projectDto
+  const {
+    id,
+    name,
+    date,
+    banner,
+    description,
+    categoryID,
+    location,
+    userID,
+    tags,
+    nameCategory
+  } = projectDto
   return {
     id,
     name,
@@ -55,8 +67,10 @@ export const getProjectAdapter = (projectDto: GetProjectDto): Project => {
     description,
     categoryID,
     location,
-    userID
-  }
+    userID,
+    tags,
+    nameCategory
+  } as Project
 }
 
 export const createProjectAdapter = (
@@ -72,7 +86,7 @@ export const createProjectAdapter = (
     categoryID,
     location,
     userID
-  }
+  } as CreateProjectDto
 }
 
 export const createResultProjectAdapter = (
@@ -89,5 +103,5 @@ export const createResultProjectAdapter = (
     categoryID,
     location,
     userID
-  }
+  } as Project
 }

@@ -1,5 +1,5 @@
 import 'react-image-lightbox/style.css'
-type ProjectIdLayoutProps = { children: JSX.Element }
+type ProjectIdLayoutProps = { children: React.ReactNode }
 
 const ProjectIdLayout = async ({ children }: ProjectIdLayoutProps) => {
   return <>{children}</>

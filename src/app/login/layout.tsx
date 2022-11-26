@@ -1,9 +1,7 @@
-import Head from 'next/head'
-
-type LoginLayoutProps = { children: JSX.Element }
+type LoginLayoutProps = { children: React.ReactNode }
 
 const LoginLayout = ({ children }: LoginLayoutProps) => {
-  return children
+  return <>{children}</>
 }
 
 export default LoginLayout
