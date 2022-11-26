@@ -1,4 +1,4 @@
-import { Container, Grid, Navbar, Text, useTheme } from '@nextui-org/react'
+import { Grid, Navbar, Text, useTheme } from '@nextui-org/react'
 import Link from 'next/link'
 import BlitoFrontPage from '@/assets/images/home-blito_bg_white.png'
 import Image from 'next/image'
@@ -13,13 +13,13 @@ const collapseItems = [
     route: '/projects'
   },
   {
-    label: 'Contact',
-    route: '/contact'
-  },
-  {
-    label: 'Login',
-    route: '/login'
+    label: 'Contacto',
+    route: '/contacto'
   }
+  // {
+  //   label: 'Login',
+  //   route: '/login'
+  // }
 ]
 
 const NavbarComponent = () => {
@@ -64,12 +64,12 @@ const NavbarComponent = () => {
         >
           Projects
         </Link>
-        <Link href="/contact">Contact</Link>
+        <Link href="/contacto">Contacto</Link>
       </Navbar.Content>
       <Navbar.Content>
-        <Link color="inherit" href="/login">
+        {/* <Link color="inherit" href="/login">
           Login
-        </Link>
+        </Link> */}
       </Navbar.Content>
 
       <Navbar.Collapse>
