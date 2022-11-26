@@ -5,6 +5,7 @@ import SplashImage1 from '@/assets/images/splash1.png'
 import SplashImage2 from '@/assets/images/splash2.png'
 import SplashImage3 from '@/assets/images/splash3.png'
 import { useScroll } from '@/hooks'
+import Fade from 'react-reveal/Fade'
 
 const FloatingSocials = () => {
   const scroll = useScroll()
@@ -18,39 +19,46 @@ const FloatingSocials = () => {
         display: opacity <= 0 ? 'none' : 'block'
       }}
     >
-      <SplashSocial
-        icon={
-          <LinkSocial
-            href="https://www.instagram.com/blito.col/?theme=dark"
-            target="_blank"
-          >
-            <BsInstagram />
-          </LinkSocial>
-        }
-        bgImg={SplashImage1.src}
-      />
-      <SplashSocial
-        icon={
-          <LinkSocial
-            href="https://www.facebook.com/pabloalexanderguerrero"
-            target="_blank"
-          >
-            <BsFacebook />
-          </LinkSocial>
-        }
-        bgImg={SplashImage2.src}
-      />
-      <SplashSocial
-        icon={
-          <LinkSocial
-            href="https://www.youtube.com/channel/UCesHX161bu3qh0qJut11vzQ"
-            target="_blank"
-          >
-            <BsYoutube />
-          </LinkSocial>
-        }
-        bgImg={SplashImage3.src}
-      />
+      <Fade right>
+        <SplashSocial
+          icon={
+            <LinkSocial
+              href="https://www.instagram.com/blito.col/?theme=dark"
+              target="_blank"
+            >
+              <BsInstagram />
+            </LinkSocial>
+          }
+          bgImg={SplashImage1.src}
+        />
+      </Fade>
+
+      <Fade right>
+        <SplashSocial
+          icon={
+            <LinkSocial
+              href="https://www.facebook.com/pabloalexanderguerrero"
+              target="_blank"
+            >
+              <BsFacebook />
+            </LinkSocial>
+          }
+          bgImg={SplashImage2.src}
+        />
+      </Fade>
+      <Fade right>
+        <SplashSocial
+          icon={
+            <LinkSocial
+              href="https://www.youtube.com/channel/UCesHX161bu3qh0qJut11vzQ"
+              target="_blank"
+            >
+              <BsYoutube />
+            </LinkSocial>
+          }
+          bgImg={SplashImage3.src}
+        />
+      </Fade>
     </ContainerSocialsHome>
   )
 }

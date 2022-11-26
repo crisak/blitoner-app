@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, BoxProps, Text } from '@/components'
+import { BoxProps, Text } from '@/components'
 import { Category } from '@/modules/categories/models'
 import { BORDER_RADIUS } from '@/styles/variables'
 import Image from 'next/image'
@@ -35,7 +35,12 @@ export const CardLinkImage = ({
 
   return (
     <>
-      <Link href={`/projects/${projectId}`}>
+      <Link
+        href={`/projects/${projectId}`}
+        style={{
+          zIndex: 4
+        }}
+      >
         <Tilt className={classes} perspective={500} scale={1.02}>
           <Image
             src={image}

@@ -13,6 +13,7 @@ import { ParallaxBanner, ParallaxBannerLayer } from 'react-scroll-parallax'
 import SplashPage from '@/assets/images/splah-push.png'
 import Image from 'next/image'
 import { randomIntFromInterval } from '@/utils'
+import Fade from 'react-reveal/Fade'
 
 const ImageSplash = styled(Image, {
   position: 'absolute'
@@ -31,7 +32,10 @@ const Categories = ({ categories }: CategoriesProps) => {
           : randomIntFromInterval(266, 352, { isDecimal: true })
 
         return (
-          <ParallaxBanner key={index} style={{ height: `100vh` }}>
+          <ParallaxBanner
+            key={index}
+            style={{ minHeight: '100vh', height: 'auto' }}
+          >
             <ParallaxBannerLayer
               speed={-20}
               scale={[0.9, 1]}
@@ -55,9 +59,11 @@ const Categories = ({ categories }: CategoriesProps) => {
               <Container>
                 <SectionCategory className={odd ? `reverse-section` : ''}>
                   <CategoryContent>
-                    <Text h2>{category.name}</Text>
-                    <Text css={{ mb: '$10' }}>{category.description}</Text>
-                    <Button>Ver más</Button>
+                    <Fade bottom cascade>
+                      <Text h2>{category.name}</Text>
+                      <Text css={{ mb: '$10' }}>{category.description}</Text>
+                      <Button>Ver más</Button>
+                    </Fade>
                   </CategoryContent>
                   <ContentProjects>
                     {category.projects.slice(0, 5).map((project, index) => (
