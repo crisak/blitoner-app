@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import store from '@/redux/store'
 import { createTheme, NextUIProvider } from '@nextui-org/react'
 
-import { Navbar, Footer } from '@/components'
+import { Navbar, Footer, Box } from '@/components'
 import { ParallaxProvider } from 'react-scroll-parallax'
 import IcoBlitoWhite from '@/assets/images/icon-blito-white.ico'
 import { useEffect, useState } from 'react'
@@ -55,29 +55,35 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
           href={IcoBlitoWhite.src}
         />
       </head>
-      <body
-        style={{
-          backgroundImage: `url(${BgBodyFigures.src})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover'
-        }}
-      >
-        <ParallaxProvider>
-          <NextUIProvider theme={darkTheme}>
-            <Provider store={store}>
-              {splash ? (
-                <Splash />
-              ) : (
-                <>
-                  <Navbar />
-                  <main>{children}</main>
-                  <Footer />
-                </>
-              )}
-            </Provider>
-          </NextUIProvider>
-        </ParallaxProvider>
+      <body>
+        <Box
+          className="body-container"
+          css={{
+            backgroundImage: `url(${BgBodyFigures.src})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            height: '100vh',
+            overflow: 'auto',
+            width: '100%'
+          }}
+        >
+          <ParallaxProvider>
+            <NextUIProvider theme={darkTheme}>
+              <Provider store={store}>
+                {splash ? (
+                  <Splash />
+                ) : (
+                  <>
+                    <Navbar />
+                    <main>{children}</main>
+                    <Footer />
+                  </>
+                )}
+              </Provider>
+            </NextUIProvider>
+          </ParallaxProvider>
+        </Box>
       </body>
     </html>
   )

@@ -11,7 +11,8 @@ const useScroll = () => {
 
   useEffect(() => {
     const initPageYOffset = window.pageYOffset
-    const initHeightWindow = window?.screen?.height || 0
+    const eleScroll = document.querySelector('.body-container')
+    const initHeightWindow = eleScroll?.scrollTop || 0
 
     setPosition((prev) => ({
       ...prev,
@@ -21,7 +22,9 @@ const useScroll = () => {
     }))
 
     const onScroll = () => {
-      const pageYOffset = window.pageYOffset
+      const pageYOffset =
+        document.querySelector('.body-container')?.scrollTop || 0
+
       setPosition((prev) => ({
         ...prev,
         pageYOffset,
@@ -29,10 +32,11 @@ const useScroll = () => {
       }))
     }
 
-    document.removeEventListener('scroll', onScroll)
-    document.addEventListener('scroll', onScroll)
+    eleScroll?.removeEventListener('scroll', onScroll)
+
+    eleScroll?.addEventListener('scroll', onScroll)
     return () => {
-      document.removeEventListener('scroll', onScroll)
+      eleScroll?.removeEventListener('scroll', onScroll)
     }
   }, [])
 

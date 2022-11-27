@@ -2,10 +2,10 @@
 
 import useSWR from 'swr'
 import { fetcher } from '@/utils'
+import type { NextPage } from 'next'
 
 import ListOfProjects from './components/ListOfProjects'
 import { Project } from './models'
-import { useSearchParams } from 'next/navigation'
 import { Breadcrumbs, BreadcrumbsProps, LoadingProgress } from '@/components'
 import { Container, Spacer } from '@nextui-org/react'
 
@@ -17,13 +17,13 @@ const breadcrumbs = {
 } as BreadcrumbsProps
 
 type ProjectsPageProps = {
-  params: {}
+  params?: unknown
   searchParams: {
     category: string
   }
 }
 
-const ProjectsPage = ({ searchParams }: ProjectsPageProps) => {
+const ProjectsPage: NextPage<ProjectsPageProps> = ({ searchParams }) => {
   const { data: projects, error } = useSWR<Project[]>(
     `/projects?category=${searchParams.category}`,
     fetcher
