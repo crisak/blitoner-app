@@ -23,13 +23,14 @@ const ContactPage = () => {
           alt="Grafiti con temática ambiental"
           fill
           style={{
-            filter: 'brightness(0.7) grayscale(1)'
+            filter: 'brightness(.2) grayscale(.2)',
+            objectFit: 'cover'
           }}
         />
       </Box>
       <Box
         css={{
-          bgBlur: '#000000bd'
+          bgBlur: '#0000008e'
         }}
       >
         <Form />

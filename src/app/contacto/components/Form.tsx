@@ -10,7 +10,7 @@ const Form = () => {
   return (
     <Box css={{ p: '$15' }}>
       <form onSubmit={handleSubmit}>
-        <Fade bottom>
+        <Fade right>
           <Grid.Container gap={4}>
             <Grid xs={12}>
               <Fade bottom>

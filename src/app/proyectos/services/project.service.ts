@@ -17,7 +17,7 @@ export const getAll = async ({ category } = filterDefaultProjects): Promise<
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       const url = process.env.NEXT_PUBLIC_BLITONER_API
-      const response = await fetch(`${url}/proyectos?category=${category}`)
+      const response = await fetch(`${url}/projects?category=${category}`)
       const data = await response.json()
 
       if (!response.ok) {

@@ -1,4 +1,3 @@
-import { Project } from '@/modules/project/models'
 import { configureStore } from '@reduxjs/toolkit'
 import { projectReducer, ProjectStore } from './slices'
 

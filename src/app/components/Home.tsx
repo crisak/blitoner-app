@@ -1,6 +1,6 @@
 'use client'
 
-import { CategoriesSummaryContents } from '@/modules/categories/models'
+import { CategoriesSummaryContents } from '@/models/categories-summary.models'
 import { ParallaxBanner, ParallaxBannerLayer } from 'react-scroll-parallax'
 import Image from 'next/image'
 import { styled } from '@nextui-org/react'

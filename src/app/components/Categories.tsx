@@ -1,6 +1,6 @@
 'use client'
 
-import { CategoriesSummaryContents } from '@/modules/categories/models'
+import { CategoriesSummaryContents } from '@/models/categories-summary.models'
 import { Button, Container, styled } from '@nextui-org/react'
 import { CardLinkImage } from './CardImage'
 import { Text } from '@/components'

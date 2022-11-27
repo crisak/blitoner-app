@@ -1,4 +1,4 @@
-import { CategoriesSummaryContents } from '@/modules/categories/models'
+import { CategoriesSummaryContents } from '@/models/categories-summary.models'
 
 const paramsDefault = {
   graffiti: 'g'

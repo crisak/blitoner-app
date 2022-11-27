@@ -16,13 +16,16 @@ const breadcrumbs = {
   ]
 } as BreadcrumbsProps
 
-const ProjectsPage = () => {
-  const params = useSearchParams()
+type ProjectsPageProps = {
+  params: {}
+  searchParams: {
+    category: string
+  }
+}
 
-  const categoryFilter = params.get('category')
-
+const ProjectsPage = ({ searchParams }: ProjectsPageProps) => {
   const { data: projects, error } = useSWR<Project[]>(
-    `/proyectos?category=${categoryFilter}`,
+    `/projects?category=${searchParams.category}`,
     fetcher
   )
 

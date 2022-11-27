@@ -33,12 +33,13 @@ const ListOfProjects = ({ projects }: ListOfProjectsProps) => {
       <Grid.Container gap={3} justify="center">
         {projects.slice(0, 10).map((project) => (
           <Grid xs={12} sm={6} md={4} key={project.id} justify="center">
-            <Link
+            <Link href={`/proyectos/${project.id}`}>
+              {/* <Link
               href={{
                 pathname: '/proyectos/[id]',
                 query: { id: project.id }
               }}
-            >
+            > */}
               <CardProject {...project} />
             </Link>
           </Grid>

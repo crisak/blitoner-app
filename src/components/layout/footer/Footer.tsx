@@ -17,7 +17,7 @@ const Footer = () => {
   return (
     <FooterStyle
       css={{
-        bgBlur: '$background'
+        bgBlur: '#00000001'
       }}
     >
       <Container>

@@ -1,13 +1,14 @@
 'use client'
 
 import { BoxProps, Text } from '@/components'
-import { Category } from '@/modules/categories/models'
+
 import { BORDER_RADIUS } from '@/styles/variables'
 import Image from 'next/image'
 import styles from './CardImage.module.css'
 import classnames from 'classnames'
 import Tilt from 'react-parallax-tilt'
 import Link from 'next/link'
+import { Category } from '@/models/categories-summary.models'
 
 const getDateFormat = (dateISOString: string) => {
   const instanceDate = new Date(dateISOString)

@@ -12,6 +12,7 @@ import { ParallaxProvider } from 'react-scroll-parallax'
 import IcoBlitoWhite from '@/assets/images/icon-blito-white.ico'
 import { useEffect, useState } from 'react'
 import Splash from './components/Splash'
+import BgBodyFigures from '@/assets/images/bg-body-figures.jpeg'
 
 const darkTheme = createTheme({
   type: 'dark'
@@ -54,7 +55,14 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
           href={IcoBlitoWhite.src}
         />
       </head>
-      <body>
+      <body
+        style={{
+          backgroundImage: `url(${BgBodyFigures.src})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover'
+        }}
+      >
         <ParallaxProvider>
           <NextUIProvider theme={darkTheme}>
             <Provider store={store}>

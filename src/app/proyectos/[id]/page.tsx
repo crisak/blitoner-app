@@ -32,7 +32,7 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
   const [isCollapse, setIsCollapse] = useState(false)
 
   const { data: project, error } = useSWR<Project>(
-    `/proyectos/${params.id}`,
+    `/projects/${params.id}`,
     fetcher
   )
 
@@ -45,7 +45,7 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
     ]
   } as BreadcrumbsProps
 
-  const displayContent = () => {
+  const displayAside = () => {
     if (!project) {
       return (
         <Row justify="center">
@@ -134,7 +134,7 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
                       </Button>
                     )}
 
-                    {displayContent()}
+                    {displayAside()}
                   </Box>
                 )
               }}

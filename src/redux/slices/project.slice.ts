@@ -1,4 +1,4 @@
-import { Project, ProjectDefaultState } from '@/modules/project/models'
+import { Project, ProjectDefaultState } from '@/app/proyectos/models'
 import { createSlice } from '@reduxjs/toolkit'
 
 export type ProjectStore = {
