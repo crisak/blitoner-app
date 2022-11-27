@@ -1,9 +1,14 @@
 import axios from 'axios'
-import { CreateProjectResultDto, GetProjectDto, GetProjectsDto } from '../dtos'
+import {
+  CreateProjectResultDto,
+  GetProjectDto
+  // GetProjectsDto
+} from '../dtos'
 import { CreateProject, Project } from '../models'
+import db from '@/utils/db'
 import {
   getProjectAdapter,
-  getProjectsAdapter,
+  // getProjectsAdapter,
   createProjectAdapter,
   createResultProjectAdapter
 } from '../adapters'
@@ -11,24 +16,29 @@ import {
 const filterDefaultProjects = { category: 'graffiti' }
 
 // TODO - Remove setTimeout
-export const getAll = async ({ category } = filterDefaultProjects): Promise<
-  Project[]
-> => {
-  return new Promise((resolve, reject) => {
-    setTimeout(async () => {
-      const url = process.env.NEXT_PUBLIC_BLITONER_API
-      const response = await fetch(`${url}/projects?category=${category}`)
-      const data = await response.json()
+export const getAll = ({ category } = filterDefaultProjects): Project[] => {
+  console.log(category)
 
-      if (!response.ok) {
-        return reject(data)
-      }
+  return db.projects
+  // return new Promise((resolve, reject) => {
+  //   setTimeout(async () => {
+  //     const url = process.env.NEXT_PUBLIC_BLITONER_API
+  //     const response = await fetch(`${url}/projects?category=${category}`)
+  //     const data = await response.json()
 
-      const dataAdapter = getProjectsAdapter(data)
+  //     /** mock */
+  //     resolve(db.projects)
+  //     return
 
-      resolve(dataAdapter)
-    }, 1000)
-  })
+  //     if (!response.ok) {
+  //       return reject(data)
+  //     }
+
+  //     const dataAdapter = getProjectsAdapter(data)
+
+  //     resolve(dataAdapter)
+  //   }, 1000)
+  // })
 }
 
 // GET - https://9g0kxdwyn1.execute-api.us-east-1.amazonaws.com/dev/projects

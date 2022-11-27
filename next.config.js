@@ -17,7 +17,8 @@ const nextConfig = {
       'c6.staticflickr.com',
       'c7.staticflickr.com',
       'c8.staticflickr.com',
-      'c9.staticflickr.com'
+      'c9.staticflickr.com',
+      'blito-app.s3.amazonaws.com'
     ]
   }
 }

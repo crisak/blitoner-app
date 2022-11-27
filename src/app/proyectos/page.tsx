@@ -1,13 +1,14 @@
 'use client'
 
-import useSWR from 'swr'
-import { fetcher } from '@/utils'
-import type { NextPage } from 'next'
+// import useSWR from 'swr'
+// import { fetcher } from '@/utils'
+// import type { NextPage } from 'next'
 
 import ListOfProjects from './components/ListOfProjects'
 import { Project } from './models'
 import { Breadcrumbs, BreadcrumbsProps, LoadingProgress } from '@/components'
 import { Container, Spacer } from '@nextui-org/react'
+import { projectService } from './services'
 
 const breadcrumbs = {
   links: [
@@ -24,15 +25,16 @@ type ProjectsPageProps = {
 }
 
 const ProjectsPage = ({ searchParams }: ProjectsPageProps) => {
-  const { data: projects, error } = useSWR<Project[]>(
-    `/projects?category=${searchParams.category}`,
-    fetcher
-  )
+  // const { data: projects, error } = useSWR<Project[]>(
+  //   `/projects?category=${searchParams.category}`,
+  //   fetcher
+  // )
+  const projects = projectService.getAll()
 
   /**
    * todo - Add message of error or a Toast component
    */
-  if (error) return <div>failed to load</div>
+  // if (error) return <div>failed to load</div>
   if (!projects) return <LoadingProgress />
 
   /**
@@ -47,6 +49,7 @@ const ProjectsPage = ({ searchParams }: ProjectsPageProps) => {
         <Spacer y={2} />
       </Container>
       <ListOfProjects projects={projects as Project[]} />
+      <Spacer y={3} />
     </>
   )
   /**

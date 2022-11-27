@@ -76,7 +76,7 @@ const Footer = () => {
               </Row>
             </Link>
 
-            <Link href="https://www.instagram.com/blito.col/" target="_blank">
+            <Link href="mailto:loxoreacrew@gmail.com" target="_blank">
               <Row align="center">
                 <BsMailbox />
                 <Text css={{ ml: '$5' }}>Email</Text>

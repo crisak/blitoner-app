@@ -127,6 +127,11 @@ const stylesContentText: CSS = {
   boxSizing: 'border-box'
 }
 
+const replaceImage = (url: string, number: number) => {
+  const newUrl = url.replace('-1', `-${number}`)
+  return newUrl
+}
+
 const CardProject = ({ name, date, location, banner }: CardProjectProps) => {
   return (
     <Box css={styles}>
@@ -134,11 +139,26 @@ const CardProject = ({ name, date, location, banner }: CardProjectProps) => {
         <Box css={styledContentImages}>
           <Image src={banner} width={MEASURE} height={MEASURE} alt={name} />
 
-          <Image src={banner} width={MEASURE} height={MEASURE} alt={name} />
+          <Image
+            src={replaceImage(banner, 2)}
+            width={MEASURE}
+            height={MEASURE}
+            alt={name}
+          />
 
-          <Image src={banner} width={MEASURE} height={MEASURE} alt={name} />
+          <Image
+            src={replaceImage(banner, 3)}
+            width={MEASURE}
+            height={MEASURE}
+            alt={name}
+          />
 
-          <Image src={banner} width={MEASURE} height={MEASURE} alt={name} />
+          <Image
+            src={replaceImage(banner, 4)}
+            width={MEASURE}
+            height={MEASURE}
+            alt={name}
+          />
         </Box>
       </Box>
 

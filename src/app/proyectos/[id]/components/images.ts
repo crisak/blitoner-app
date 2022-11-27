@@ -1,8 +1,8 @@
 export interface CustomImage {
   original: string
   src: string
-  width: number
-  height: number
+  width?: number
+  height?: number
   alt?: string
   tags?: { value: string; title: string }[]
   caption?: string

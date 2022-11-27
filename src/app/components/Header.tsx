@@ -23,7 +23,7 @@ const Header = () => {
         <Fade bottom>Blito</Fade>
       </Text>
       <Text h2 css={{ textAlign: 'center' }}>
-        <Fade bottom>Deja volar tu imaginación</Fade>
+        <Fade bottom>Deja entrar el color a tu vida</Fade>
       </Text>
     </HeaderStyle>
   )

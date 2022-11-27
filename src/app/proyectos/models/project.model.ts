@@ -15,13 +15,13 @@ export interface Project {
     name: string
     username: string
     email: string
+    photoUrl: string
     socials: {
       id: number
       url: string
       username: string
       type: 'FACEBOOK' | 'INSTAGRAM' | 'YOUTUBE' | 'TWITTER'
     }[]
-    photoUrl: string
   }[]
   location: {
     position: { latitude: number; longitude: number }

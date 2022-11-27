@@ -6,6 +6,7 @@ import StackGrid from 'react-stack-grid'
 import { BORDER_RADIUS } from '@/styles/variables'
 import { Box } from '@/components'
 import Image from 'next/image'
+import { contentGallery } from '@/utils/db-images'
 
 export const WIDTH = 200
 
@@ -30,8 +31,9 @@ const toBase64 = (str: string) =>
     ? Buffer.from(str).toString('base64')
     : window.btoa(str)
 
-const ContentGallery = () => {
+const ContentGallery = ({ projectId }: any) => {
   const [index, setIndex] = useState(-1)
+  const images = contentGallery.filter(({ projectId: id }) => id === projectId)
 
   const currentImage = images[index]
   const nextIndex = (index + 1) % images.length

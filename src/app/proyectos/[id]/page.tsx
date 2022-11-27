@@ -1,16 +1,17 @@
 'use client'
 
 import { Box, Breadcrumbs, BreadcrumbsProps, Text } from '@/components'
-import { fetcher } from '@/utils'
+// import { fetcher } from '@/utils'
 import { Button, Container, Row, Spacer } from '@nextui-org/react'
 import { Loading } from '@nextui-org/react'
 import { useState } from 'react'
-import useSWR from 'swr'
-import { Project } from '../models'
+// import useSWR from 'swr'
+// import { Project } from '../models'
 import { InfoDetail, ContentGallery } from './components'
 import { BsChevronDoubleRight, BsChevronDoubleLeft } from 'react-icons/bs'
 import { HEIGHT_NAVBAR } from '@/styles/variables'
 import { SizeMe } from 'react-sizeme'
+import DB from '@/utils/db'
 
 const WIDTH_ASIDE = '300px'
 
@@ -31,10 +32,14 @@ type ProjectIdPage = {
 const ProjectIdPage = ({ params }: ProjectIdPage) => {
   const [isCollapse, setIsCollapse] = useState(false)
 
-  const { data: project, error } = useSWR<Project>(
-    `/projects/${params.id}`,
-    fetcher
-  )
+  const error = null
+
+  // const { data: project, error } = useSWR<Project>(
+  //   `/projects/${params.id}`,
+  //   fetcher
+  // )
+
+  const project = DB.projects.find(({ id }) => id === params.id)
 
   const paramsBreadcrumbs = {
     links: [
@@ -161,7 +166,7 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
               </Button>
             )}
 
-            <ContentGallery />
+            <ContentGallery projectId={params.id} />
           </Box>
         </Box>
       </Container>
