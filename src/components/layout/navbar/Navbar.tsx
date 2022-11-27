@@ -39,20 +39,29 @@ const NavbarComponent = () => {
       variant="sticky"
     >
       <Navbar.Brand>
+        <Link
+          href={{
+            pathname: '/'
+          }}
+          style={{
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <Image
+            src={BlitoFrontPage}
+            width={40}
+            height={40}
+            alt="Logo de portada"
+            color="red"
+          />
+          <Text b color="inherit" hideIn="xs" css={{ ml: '$8' }}>
+            Blito
+          </Text>
+        </Link>
         <Grid sm={0}>
           <Navbar.Toggle css={{ mr: '$8' }} aria-label="toggle navigation" />
         </Grid>
-
-        <Image
-          src={BlitoFrontPage}
-          width={40}
-          height={40}
-          alt="Logo de portada"
-          color="red"
-        />
-        <Text b color="inherit" hideIn="xs" css={{ ml: '$8' }}>
-          Blito
-        </Text>
       </Navbar.Brand>
       <Navbar.Content enableCursorHighlight hideIn="xs" variant="underline">
         <Link href="/">Home</Link>

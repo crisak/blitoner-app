@@ -80,9 +80,9 @@ const rotates = [...Array(4).fill(0)].reduce((prev, _, index) => {
   const calcRight: number = MEASURE_SUM_RIGHT * indexCal
   const calcTop: number = MEASURE_SUM_TOP * indexCal
 
-  const isEven = Boolean(index % 2 === 0)
+  const isEven: boolean = Boolean(index % 2 === 0)
 
-  const rotate = isEven
+  const rotate: number = isEven
     ? randomIntFromInterval(5, 9)
     : randomIntFromInterval(350, 365)
 

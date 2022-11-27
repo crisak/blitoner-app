@@ -10,6 +10,8 @@ import { createTheme, NextUIProvider } from '@nextui-org/react'
 import { Navbar, Footer } from '@/components'
 import { ParallaxProvider } from 'react-scroll-parallax'
 import IcoBlitoWhite from '@/assets/images/icon-blito-white.ico'
+import { useEffect, useState } from 'react'
+import Splash from './components/Splash'
 
 const darkTheme = createTheme({
   type: 'dark'
@@ -19,7 +21,24 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
+const $2seconds = 3000
+
 function RootLayout({ children }: RootLayoutProps): JSX.Element {
+  const [splash, setSplash] = useState(true)
+
+  useEffect(() => {
+    let refTimeout: NodeJS.Timeout | null = null
+
+    refTimeout = setTimeout(() => {
+      setSplash(false)
+    }, $2seconds)
+
+    return () => {
+      if (refTimeout) {
+        clearTimeout(refTimeout)
+      }
+    }
+  }, [])
   return (
     <html>
       <head>
@@ -39,9 +58,15 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
         <ParallaxProvider>
           <NextUIProvider theme={darkTheme}>
             <Provider store={store}>
-              <Navbar />
-              <main>{children}</main>
-              <Footer />
+              {splash ? (
+                <Splash />
+              ) : (
+                <>
+                  <Navbar />
+                  <main>{children}</main>
+                  <Footer />
+                </>
+              )}
             </Provider>
           </NextUIProvider>
         </ParallaxProvider>

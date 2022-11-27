@@ -21,9 +21,10 @@ const ContactPage = () => {
         <Image
           src={BgFormContact.src}
           alt="Grafiti con temática ambiental"
-          // width={BgFormContact.width}
-          // height={BgFormContact.height}
           fill
+          style={{
+            filter: 'brightness(0.7) grayscale(1)'
+          }}
         />
       </Box>
       <Box
