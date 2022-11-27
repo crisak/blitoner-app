@@ -23,7 +23,7 @@ type ProjectsPageProps = {
   }
 }
 
-const ProjectsPage: NextPage<ProjectsPageProps> = ({ searchParams }) => {
+const ProjectsPage = ({ searchParams }: ProjectsPageProps) => {
   const { data: projects, error } = useSWR<Project[]>(
     `/projects?category=${searchParams.category}`,
     fetcher
@@ -54,4 +54,4 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({ searchParams }) => {
    */
 }
 
-export default ProjectsPage
+export default ProjectsPage as any
