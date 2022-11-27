@@ -36,7 +36,7 @@ export const CardLinkImage = ({
   return (
     <>
       <Link
-        href={`/projects/${projectId}`}
+        href={`/proyectos/${projectId}`}
         style={{
           zIndex: 4
         }}

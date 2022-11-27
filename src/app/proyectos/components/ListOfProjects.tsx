@@ -24,7 +24,7 @@ const ListOfProjects = ({ projects }: ListOfProjectsProps) => {
     <Container>
       <Text h2 weight="bold">
         Proyectos
-        <Link href="/projects" style={{ float: 'right' }}>
+        <Link href="/proyectos" style={{ float: 'right' }}>
           <BsArrowClockwise size={25} />
         </Link>
       </Text>
@@ -35,7 +35,7 @@ const ListOfProjects = ({ projects }: ListOfProjectsProps) => {
           <Grid xs={12} sm={6} md={4} key={project.id} justify="center">
             <Link
               href={{
-                pathname: '/projects/[id]',
+                pathname: '/proyectos/[id]',
                 query: { id: project.id }
               }}
             >

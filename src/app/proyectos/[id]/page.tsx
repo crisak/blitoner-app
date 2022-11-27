@@ -17,7 +17,7 @@ const WIDTH_ASIDE = '300px'
 const breadcrumbs = {
   links: [
     { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' },
+    { label: 'Proyectos', href: '/proyectos' },
     { label: '...' }
   ]
 } as BreadcrumbsProps
@@ -32,7 +32,7 @@ const ProjectIdPage = ({ params }: ProjectIdPage) => {
   const [isCollapse, setIsCollapse] = useState(false)
 
   const { data: project, error } = useSWR<Project>(
-    `/projects/${params.id}`,
+    `/proyectos/${params.id}`,
     fetcher
   )
 

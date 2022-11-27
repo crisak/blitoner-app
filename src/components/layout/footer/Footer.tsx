@@ -35,7 +35,7 @@ const Footer = () => {
               }}
             >
               <Link href="/">Home</Link>
-              <Link href="/projects">Projects</Link>
+              <Link href="/proyectos">Projects</Link>
               <Link href="/contacto">Formulario de contacto</Link>
               <Link href="/login">Ingresar como administrado</Link>
             </Row>

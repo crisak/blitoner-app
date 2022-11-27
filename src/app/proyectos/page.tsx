@@ -12,7 +12,7 @@ import { Container, Spacer } from '@nextui-org/react'
 const breadcrumbs = {
   links: [
     { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' }
+    { label: 'Projects', href: '/proyectos' }
   ]
 } as BreadcrumbsProps
 
@@ -22,7 +22,7 @@ const ProjectsPage = () => {
   const categoryFilter = params.get('category')
 
   const { data: projects, error } = useSWR<Project[]>(
-    `/projects?category=${categoryFilter}`,
+    `/proyectos?category=${categoryFilter}`,
     fetcher
   )
 
