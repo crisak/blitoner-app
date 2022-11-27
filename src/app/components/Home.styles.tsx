@@ -7,7 +7,8 @@ const HEIGHT_NAVBAR = '76px'
  */
 export const Header = styled('header', {
   display: 'flex',
-  height: `calc(100vh - ${HEIGHT_NAVBAR})`,
+  minHeight: `calc(100vh - ${HEIGHT_NAVBAR})`,
+  height: 'auto',
   width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
